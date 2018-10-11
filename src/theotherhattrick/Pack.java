@@ -9,14 +9,6 @@ package theotherhattrick;
  *
  * @author v1nkey
  */
-public class TheOtherHatTrick {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Game game = Game.getInstance();
-    }
+public class Pack {
     
 }

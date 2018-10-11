@@ -5,18 +5,20 @@
  */
 package theotherhattrick;
 
+import java.util.List;
+
 /**
  *
  * @author v1nkey
  */
-public class TheOtherHatTrick {
+public class Deck {
+    private List<Card> cards;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Game game = Game.getInstance();
+    public Deck(List<Card> cards) { this.cards = cards; }
+    
+    public void suffle()
+    {
+        
     }
     
 }

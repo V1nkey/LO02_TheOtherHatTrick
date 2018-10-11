@@ -9,14 +9,11 @@ package theotherhattrick;
  *
  * @author v1nkey
  */
-public class TheOtherHatTrick {
+public class Prop extends Card
+{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Game game = Game.getInstance();
-    }
+    public Prop(String name) { super(name); }
+
+    public Prop(String name, boolean visible) { super(name, visible); }
     
 }
