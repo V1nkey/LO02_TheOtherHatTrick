@@ -5,7 +5,7 @@
  */
 package theotherhattrick;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,16 +14,16 @@ import java.util.List;
 public class Trick extends Card 
 {
     private int nbPoints;
-    private List<Prop> combination;
+    private Map<Prop, Prop> combination;
 
-    public Trick(int nbPoints, List<Prop> combination, String name) 
+    public Trick(String name, int nbPoints, Map<Prop, Prop> combination) 
     {
         super(name);
         this.nbPoints = nbPoints;
         this.combination = combination;
     }
 
-    public Trick(int nbPoints, List<Prop> combination, String name, boolean visible) 
+    public Trick(String name, int nbPoints, Map<Prop, Prop> combination, boolean visible) 
     {
         super(name, visible);
         this.nbPoints = nbPoints;
@@ -31,6 +31,6 @@ public class Trick extends Card
     }
 
     public int getNbPoints() { return nbPoints; }
-    public List<Prop> getCombination() { return combination; }
+    public Map<Prop, Prop> getCombination() { return combination; }
     
 }

@@ -5,6 +5,9 @@
  */
 package theotherhattrick;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author v1nkey
@@ -17,6 +20,12 @@ public class TheOtherHatTrick {
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = Game.getInstance();
+        CardFactory cf = CardFactory.getInstance();
+        List<Object> cards = new ArrayList();
+        
+        cards = cf.parse("cards.csv");
+        for (Object c : cards)
+            System.out.println(c.toString());
     }
     
 }

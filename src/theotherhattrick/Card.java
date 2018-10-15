@@ -16,7 +16,7 @@ public class Card {
     public Card(String name) 
     {
         this.name = name;
-        visible = false;
+        visible = true;
     }
 
     public Card(String name, boolean visible) 
