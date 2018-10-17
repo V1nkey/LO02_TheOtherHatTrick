@@ -6,7 +6,6 @@
 package theotherhattrick;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -90,9 +89,9 @@ public class CardFactory implements Parsable {
                     default:
                         //throw exception
                         break;
-                }
-                
+                } 
             }
+            br.close();
         } 
         catch (IOException ex) 
         {
