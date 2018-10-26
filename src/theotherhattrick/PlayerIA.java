@@ -9,6 +9,10 @@ package theotherhattrick;
  *
  * @author v1nkey
  */
-public class Pack {
+public class PlayerIA extends Player {
+
+    public PlayerIA(String name) {
+        super(name);
+    }
     
 }

@@ -7,6 +7,7 @@ package theotherhattrick;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,23 +17,29 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author v1nkey
  */
 public class Game {
-    private static Game game;
+    private static Game game = null;
     private Prop seventhProp;
+    private Deck trickDeck;
+    private Deck propDeck;
+    private List<Player> players;
     
-    private Game()
+    private Game() 
     {
-        initGame();
+        seventhProp = null;
+        trickDeck = null;
+        propDeck = null;
+        players = new ArrayList();
     }
     
     public static Game getInstance()
     {
         if (game == null)
-            return game = new Game();
+            game = new Game();
         
-            return game;
+        return game;
     }
     
-    public void initGame()
+    public void initGame(List<PlayerReal> physicalPlayers)
     {
         JFileChooser fileChooser = new JFileChooser(new File(".."));
         fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
@@ -46,7 +53,20 @@ public class Game {
         List<Object> objCards = new ArrayList();
         CardFactory cf = CardFactory.getInstance();
         objCards = cf.parse(cardsFile.getAbsolutePath());
+        createDecks(objCards);
         
+        trickDeck.shuffleButOne("The Other Hat Trick");
+        propDeck.shuffle();
+        
+        Collections.sort(physicalPlayers);
+        for (PlayerReal pr : physicalPlayers)
+            players.add(pr);
+        
+        createBotPlayers(3 - physicalPlayers.size());
+    }
+    
+    private void createDecks(List<Object> objCards)
+    {
         List<Card> trickCards = new ArrayList();
         List<Card> propCards = new ArrayList();
         
@@ -59,11 +79,13 @@ public class Game {
                 propCards.add((Card)o);
         }
         
-        Deck trickDeck = new Deck(trickCards);
-        Deck propDeck = new Deck(propCards);
-        
-        trickDeck.shuffleButOne("The Other Hat Trick");
-        propDeck.shuffle();
-        
+        trickDeck = new Deck(trickCards);
+        propDeck = new Deck(propCards);
+    }
+    
+    private void createBotPlayers(int nbBots)
+    {
+        for (int i = 0; i < nbBots; i++)
+            players.add(new PlayerIA("Bot " + i));
     }
 }

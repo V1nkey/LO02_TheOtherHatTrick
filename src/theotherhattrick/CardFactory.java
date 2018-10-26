@@ -21,14 +21,14 @@ import java.util.logging.Logger;
  * @author v1nkey
  */
 public class CardFactory implements Parsable {
-    private static CardFactory instance;
+    private static CardFactory instance = null;
     
     private CardFactory() {}
     
     public static CardFactory getInstance()
     {
         if (instance == null)
-            return new CardFactory();
+            instance = new CardFactory();
         
         return instance;
     }

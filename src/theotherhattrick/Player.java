@@ -13,9 +13,9 @@ import java.util.List;
  * @author v1nkey
  */
 public class Player {
-    private String name;
-    private List<Trick> performedTricks;
-    private List<Prop> hand;
+    protected String name;
+    protected List<Trick> performedTricks;
+    protected List<Prop> hand;
 
     public Player(String name) 
     {
@@ -39,12 +39,10 @@ public class Player {
         
     }
     
-    public void seeCard()
+    public void doTrick(Trick t)
     {
-        for (Card card : hand)
-            System.out.println(card.toString());
+        
     }
-    
-//    public doTrick()
-    
+
+    public String getName() { return name; }
 }
