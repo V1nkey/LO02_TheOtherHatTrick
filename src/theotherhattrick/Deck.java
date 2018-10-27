@@ -37,4 +37,10 @@ public class Deck {
             shuffle();
     }
     
+    public Card draw() 
+    {
+        int index = cards.size()-1;
+        return cards.remove(index);
+    }
+    
 }

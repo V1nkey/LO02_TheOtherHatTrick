@@ -43,6 +43,8 @@ public class Player {
     {
         
     }
-
+    
     public String getName() { return name; }
+
+    public List<Prop> getHand() { return hand; }
 }

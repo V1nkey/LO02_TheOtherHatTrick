@@ -63,6 +63,8 @@ public class Game {
             players.add(pr);
         
         createBotPlayers(3 - physicalPlayers.size());
+        
+        deal();
     }
     
     private void createDecks(List<Object> objCards)
@@ -88,4 +90,16 @@ public class Game {
         for (int i = 0; i < nbBots; i++)
             players.add(new PlayerIA("Bot " + i));
     }
+    
+    private void deal()
+    {
+        for (int i = 0; i < 2 * players.size(); i++)
+            players.get(i % players.size()).hand.add((Prop)propDeck.draw());
+        
+        seventhProp = (Prop)propDeck.draw();
+    }
+
+    public Prop getSeventhProp() { return seventhProp; }
+    
+    public List<Player> getPlayers() { return players; }
 }

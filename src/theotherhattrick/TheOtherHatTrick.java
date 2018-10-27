@@ -21,5 +21,18 @@ public class TheOtherHatTrick {
         // TODO code application logic here
         Game game = Game.getInstance();
         
+        List<PlayerReal> players = new ArrayList();
+        game.initGame(players);
+        
+        for (Player p : game.getPlayers())
+        {
+            System.out.println(p.getName());
+            for (Prop pr : p.getHand())
+                System.out.println(pr.toString());
+            
+            System.out.println("******************");
+        }
+        System.out.println(game.getSeventhProp());
+        System.out.println("******************");
     }
 }
