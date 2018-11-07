@@ -7,15 +7,16 @@ package theotherhattrick;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
  * @author v1nkey
  */
 public class Player {
-    protected String name;
-    protected List<Trick> performedTricks;
-    protected List<Prop> hand;
+    private String name;
+    private List<Trick> performedTricks;
+    private List<Prop> hand;
 
     public Player(String name) 
     {
@@ -34,17 +35,80 @@ public class Player {
         return playerPoints;
     }
     
-    public void exchangeCard(Card card)
+    public void exchangeCard(int cardIndex, Player p, int otherIndex)
     {
-        
+        Prop tmp = hand.remove(cardIndex);
+        hand.add(p.getHand().remove(otherIndex));
+        p.getHand().add(tmp);
     }
     
-    public void doTrick(Trick t)
+    public boolean choseTrick(Trick t)
     {
+        Scanner sc = new Scanner(System.in);
+        String choice;
+        System.out.println("Trick : " + t);
+        do
+        {
+            System.out.println("Choisir ce trick ? O / N");
+            choice = sc.nextLine().toLowerCase();
+            
+            if (choice != "o" && choice != "n")
+                System.out.println("Merci d'entrer O ou N");
+            
+        } while (choice != "o" && choice != "n");
         
+        if (choice == "o")
+            return true;
+        
+        return false;
+    }
+    
+    public boolean doTrick(Trick t)
+    {
+        Scanner sc = new Scanner(System.in);
+        String choice;
+        System.out.println("Trick : " + t);
+        do
+        {
+            System.out.println("Réaliser ce trick ? O / N");
+            choice = sc.nextLine().toLowerCase();
+            
+            if (choice != "o" && choice != "n")
+                System.out.println("Merci d'entrer O ou N");
+            
+        } while (choice != "o" && choice != "n");
+        
+        if (choice == "o")
+            return true;
+        
+        return false;
+    }
+    
+    public Card discardCard(int index)
+    {
+        return hand.remove(index);
+    }
+    
+    public void showHand()
+    {
+        int i = 0;
+        for (Card c : hand)
+        {
+            if(c.isVisible())
+                System.out.println(i++ + " - " + c);
+            
+            else
+            {
+                c.flipCard();
+                System.out.println(i++ + " - " + c);
+                c.flipCard();
+            }    
+        }
     }
     
     public String getName() { return name; }
 
     public List<Prop> getHand() { return hand; }
+
+    public List<Trick> getPerformedTricks() { return performedTricks; }
 }

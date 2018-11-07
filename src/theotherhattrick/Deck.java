@@ -39,8 +39,15 @@ public class Deck {
     
     public Card draw() 
     {
-        int index = cards.size()-1;
-        return cards.remove(index);
+        try 
+        {
+            return cards.remove(0);
+        } 
+        catch (Exception e) 
+        {
+            return null;
+        }
     }
-    
+
+    public List<Card> getCards() { return cards; }
 }

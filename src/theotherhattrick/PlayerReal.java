@@ -24,7 +24,7 @@ public class PlayerReal extends Player implements Comparable {
     
     public void seeCard()
     {
-        for (Card card : hand)
+        for (Card card : super.getHand())
             System.out.println(card.toString());
     }
 

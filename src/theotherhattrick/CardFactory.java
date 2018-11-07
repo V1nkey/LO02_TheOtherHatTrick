@@ -64,20 +64,35 @@ public class CardFactory implements Parsable {
                         break;
                     
                     case "trick":
-                        Map<Prop, Prop> combination = new HashMap();
+                        List<List<Prop>> combination = new ArrayList();
+                        List<Prop> prop1 = new ArrayList();
+                        List<Prop> prop2 = new ArrayList();
+                        
                         if (items.length == 5)
                         {
-                            combination.put(new Prop(items[3]), new Prop(items[4]));
-                            if (items.length == 7)
-                            {
-                                combination.put(new Prop(items[5]), new Prop(items[6]));
-                                if (items.length == 9)
-                                {
-                                    combination.put(new Prop(items[7]), new Prop(items[8]));
-                                    if (items.length == 11)
-                                        combination.put(new Prop(items[9]), new Prop(items[10]));
-                                }
-                            }
+                            prop1.add(new Prop(items[3]));
+                            prop2.add(new Prop(items[4]));
+                            combination.add(prop1);
+                            combination.add(prop2);
+                        }
+                         
+                        if (items.length == 6)
+                        {
+                            prop1.add(new Prop(items[3]));
+                            prop1.add(new Prop(items[4]));
+                            prop2.add(new Prop(items[5]));
+                            combination.add(prop1);
+                            combination.add(prop2);
+                        }
+                         
+                        if (items.length == 7)
+                        {
+                            prop1.add(new Prop(items[3]));
+                            prop1.add(new Prop(items[4]));
+                            prop2.add(new Prop(items[5]));
+                            prop2.add(new Prop(items[6]));
+                            combination.add(prop1);
+                            combination.add(prop2);
                         }
                         
                         if (!combination.isEmpty())
