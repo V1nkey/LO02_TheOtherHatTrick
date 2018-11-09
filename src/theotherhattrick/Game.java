@@ -8,9 +8,14 @@ package theotherhattrick;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeMap;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -25,6 +30,7 @@ public class Game {
     private Deck propDeck;
     private Stack<Trick> trickPile;
     private List<Player> players;
+    private int tryOnLastTrick;
     
     private Game() 
     {
@@ -33,6 +39,7 @@ public class Game {
         propDeck = null;
         trickPile = new Stack();
         players = new ArrayList();
+        tryOnLastTrick = 0;
     }
     
     public static Game getInstance()
@@ -88,7 +95,7 @@ public class Game {
         {
             if (p.doTrick(currentTrick))
             {   
-                p.getPerformedTricks().add(currentTrick);
+                p.getPerformedTricks().add(trickPile.pop());
                 System.out.println("Ta-Dah !");
                 p.getHand().add(seventhProp);
                 System.out.println("Choisissez une carte à remettre au milieu");
@@ -162,6 +169,8 @@ public class Game {
                 p.getHand().get(Integer.parseInt(choice)).flipCard();
             }
         }
+        if (trickPile.peek().getName().equals("The Other Hat Trick"))
+            tryOnLastTrick++;
     }
     
     public boolean isEnded()
@@ -170,7 +179,15 @@ public class Game {
         {
             if (!trickPile.contains("The Other Hat Trick"))
                 return true;
+            
+            else if (tryOnLastTrick == players.size())
+                return true;
+            
+            else 
+                return false;
         }
+        else 
+            return false;
     }
     
     private void createDecks(List<Object> objCards)
@@ -210,6 +227,31 @@ public class Game {
         Trick t = (Trick)trickDeck.draw();
         t.flipCard();
         trickPile.push(t);
+    }
+    
+    public void endGame()
+    {
+        for (Player p : players)
+                p.countPoints();
+
+        if (trickPile.contains("The Other Hat Trick"))
+            for (Player p : players)
+            {
+                if (p.getHand().contains("The Hat"))
+                    p.setPenalty();
+                
+                if (p.getHand().contains("The Other Rabbit"))
+                    p.setPenalty();
+            }
+        players.sort((Player p1, Player p2) -> p1.getScore() < p2.getScore() ? -1 : 1);
+        showFinalRanking();
+    }
+    
+    private void showFinalRanking()
+    {
+        int i = 1;
+        for (Player p : players)
+            System.out.println(i++ + " " + p.getName() + " : " + p.getScore() + " pts");
     }
     
     public void showBoard()

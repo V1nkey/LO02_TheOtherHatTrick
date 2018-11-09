@@ -17,22 +17,23 @@ public class Player {
     private String name;
     private List<Trick> performedTricks;
     private List<Prop> hand;
+    private int score;
 
     public Player(String name) 
     {
         this.name = name;
         performedTricks = new ArrayList();
         hand = new ArrayList();
+        score = 0;
     }
     
     public int countPoints()
     {
-        int playerPoints = 0;
-        
+        score = 0;
         for (Trick t : performedTricks)
-            playerPoints += t.getNbPoints();
+            score += t.getNbPoints();
         
-        return playerPoints;
+        return score;
     }
     
     public void exchangeCard(int cardIndex, Player p, int otherIndex)
@@ -106,9 +107,19 @@ public class Player {
         }
     }
     
+    public int compareTo(Object o) 
+    {
+        Player p = (Player)o;
+        return Integer.compare(this.score, p.score);
+    }
+    
+    public void setPenalty() { score -= 3; }
+    
     public String getName() { return name; }
 
     public List<Prop> getHand() { return hand; }
 
     public List<Trick> getPerformedTricks() { return performedTricks; }
+    
+    public int getScore() { return score; }
 }

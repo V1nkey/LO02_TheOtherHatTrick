@@ -22,6 +22,16 @@ public class TheOtherHatTrick {
         Game game = Game.getInstance();
         
         List<PlayerReal> realPlayers = new ArrayList();
+        int i = 0;
+        realPlayers.add(new PlayerReal("Player " + i, i++));
+        i = 0;
         game.initGame(realPlayers);
+        
+        do
+        {
+            game.playTurn(game.getPlayers().get(i%game.getPlayers().size()));
+        } while (!game.isEnded());
+        
+        
     }
 }
