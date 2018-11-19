@@ -25,18 +25,22 @@ public class Card {
         this.visible = visible;
     }
     
-    public void flipCard() { this.visible = !this.visible; }
+//    public void flipCard() { this.visible = !this.visible; }
 
     @Override
     public String toString() 
     {
         if (visible)
-            return name + "\t";
+            return name;
         
         else
             return "Vous ne pouvez pas voir cette carte";
     }
     
+    @Override
+    public int hashCode() { return name.length(); }
+    
+    @Override
     public boolean equals(Object o)
     {
         if (o instanceof String)
@@ -60,4 +64,6 @@ public class Card {
     public String getName() { return name; }
     
     public boolean isVisible() { return visible; }
+    
+    public void setVisible(boolean visible) { this.visible = visible; }
 }

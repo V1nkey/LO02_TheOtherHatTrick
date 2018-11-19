@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author v1nkey
  */
-public class Player {
+public abstract class Player {
     private String name;
     private List<Trick> performedTricks;
     private List<Prop> hand;
@@ -27,85 +27,108 @@ public class Player {
         score = 0;
     }
     
+    public abstract void play(Game game);
+    
+    public void updateScore() { score = countPoints(); }
+    
     public int countPoints()
     {
-        score = 0;
+        int nbPoints = 0;
         for (Trick t : performedTricks)
-            score += t.getNbPoints();
+            nbPoints += t.getNbPoints();
         
-        return score;
+        return nbPoints;
     }
     
-    public void exchangeCard(int cardIndex, Player p, int otherIndex)
+    public void exchangeCard(int ownCardIndex, Player otherPlayer, int otherPlayerCardIndex)
     {
-        Prop tmp = hand.remove(cardIndex);
-        hand.add(p.getHand().remove(otherIndex));
-        p.getHand().add(tmp);
+        Card cardToGive = hand.remove(ownCardIndex);
+        Card cardToGet = otherPlayer.getHand().remove(otherPlayerCardIndex);
+        
+        hand.add((Prop)cardToGet);
+        otherPlayer.getHand().add((Prop)cardToGive);
     }
     
-    public boolean choseTrick(Trick t)
-    {
+    public abstract boolean choseTrick(Trick t);
+    
+    public Card discardCard() 
+    { 
+        System.out.println("Choisissez une carte à remettre au milieu");
+        showHand(true);
         Scanner sc = new Scanner(System.in);
         String choice;
-        System.out.println("Trick : " + t);
+
         do
         {
-            System.out.println("Choisir ce trick ? O / N");
-            choice = sc.nextLine().toLowerCase();
-            
-            if (choice != "o" && choice != "n")
-                System.out.println("Merci d'entrer O ou N");
-            
-        } while (choice != "o" && choice != "n");
+            choice = sc.nextLine();
+            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
+                System.out.println("Choisissez une carte à remettre au milieu");
+        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));
         
-        if (choice == "o")
-            return true;
-        
-        return false;
+        return hand.remove(Integer.parseInt(choice));
     }
     
-    public boolean doTrick(Trick t)
+    public void turnOverCard()
     {
-        Scanner sc = new Scanner(System.in);
-        String choice;
-        System.out.println("Trick : " + t);
-        do
+        if (hand.get(0).isVisible())
         {
-            System.out.println("Réaliser ce trick ? O / N");
-            choice = sc.nextLine().toLowerCase();
-            
-            if (choice != "o" && choice != "n")
-                System.out.println("Merci d'entrer O ou N");
-            
-        } while (choice != "o" && choice != "n");
-        
-        if (choice == "o")
-            return true;
-        
-        return false;
-    }
-    
-    public Card discardCard(int index)
-    {
-        return hand.remove(index);
-    }
-    
-    public void showHand()
-    {
-        int i = 0;
-        for (Card c : hand)
+            if (!hand.get(1).isVisible())
+                hand.get(1).setVisible(true);
+        }
+        else if (hand.get(1).isVisible())
         {
-            if(c.isVisible())
-                System.out.println(i++ + " - " + c);
-            
-            else
-            {
-                c.flipCard();
-                System.out.println(i++ + " - " + c);
-                c.flipCard();
-            }    
+            if (!hand.get(0).isVisible())
+                hand.get(0).setVisible(true);
         }
     }
+    
+    public void performedTrickRoutine()
+    {
+        Trick t = Game.getInstance().getTrickPile().pop();
+        performedTricks.add(t);
+        System.out.println("Ta-Dah !");
+        hand.add(Game.getInstance().getSeventhProp());
+        
+        for (Card c : hand)
+            c.setVisible(false);
+                
+        Prop newSevethProp = (Prop)discardCard();
+        
+        Game.getInstance().setSeventhProp(newSevethProp);
+    }
+    
+    public String seeCard(Card c) { return c.getName(); }
+    
+    public void showHand(boolean allCardsVisible)
+    {
+        int i = 0;
+        if (allCardsVisible)
+            for (Card c : hand)
+                System.out.println(i++ + " - " + c.getName());
+        else
+            for (Card c : hand)
+                System.out.println(i++ + " - " + c);
+    }
+    
+    public void setPenalty() { score -= 3; }
+    
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o instanceof Player)
+        {
+            Player p = (Player)o;
+            if (this.name.equalsIgnoreCase(p.getName()))
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+    
+    @Override
+    public int hashCode() { return name.length(); }
     
     public int compareTo(Object o) 
     {
@@ -113,7 +136,8 @@ public class Player {
         return Integer.compare(this.score, p.score);
     }
     
-    public void setPenalty() { score -= 3; }
+    @Override
+    public String toString() { return (name + " : " + score + " pts"); }
     
     public String getName() { return name; }
 

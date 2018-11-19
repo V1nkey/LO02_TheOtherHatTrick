@@ -61,7 +61,7 @@ public class Game {
 //        else 
 //            return;
         
-        List<Object> objCards = new ArrayList();
+        List<Object> objCards;
         CardFactory cf = CardFactory.getInstance();
 //        objCards = cf.parse(cardsFile.getAbsolutePath());
         objCards = cf.parse("../cards.csv");
@@ -83,93 +83,9 @@ public class Game {
     
     public void playTurn(Player p)
     {
-        Trick currentTrick = trickPile.peek();
-        
-        if (!p.choseTrick(currentTrick))
-        {
-            drawTrick();
-            currentTrick = trickPile.peek();
-        }
-        
-        if (currentTrick.isDoable(p.getHand()))
-        {
-            if (p.doTrick(currentTrick))
-            {   
-                p.getPerformedTricks().add(trickPile.pop());
-                System.out.println("Ta-Dah !");
-                p.getHand().add(seventhProp);
-                System.out.println("Choisissez une carte à remettre au milieu");
-                p.showHand();
-                Scanner sc = new Scanner(System.in);
-                String choice;
-                
-                do
-                {
-                    choice = sc.nextLine();
-                    if (choice != "0" && choice != "1" && choice != "2")
-                        System.out.println("Choisissez une carte à remettre au milieu");
-                } while (choice != "0" && choice != "1" && choice != "2");
-                
-                seventhProp = p.getHand().get(Integer.parseInt(choice));
-            }
-            else
-            {
-                System.out.println("Choisissez une carte à retourner");
-                p.showHand();
-                
-                if (p.getHand().get(0).isVisible())
-                {
-                    if (!p.getHand().get(1).isVisible())
-                        p.getHand().get(1).flipCard();
-                }
-                else if (p.getHand().get(1).isVisible())
-                {
-                    if (!p.getHand().get(0).isVisible())
-                        p.getHand().get(1).flipCard();
-                }
-                else
-                {
-                    Scanner sc = new Scanner(System.in);
-                    String choice;
-                    do
-                    {
-                        choice = sc.nextLine();
-                        if (choice != "0" && choice != "1")
-                            System.out.println("Choisissez une carte à retourner");
-                    } while (choice != "0" && choice != "1");
-                    p.getHand().get(Integer.parseInt(choice)).flipCard();
-                }
-            }
-        }
-        else
-        {
-            System.out.println("Choisissez une carte à retourner");
-            p.showHand();
+        p.play(this);
 
-            if (p.getHand().get(0).isVisible())
-            {
-                if (!p.getHand().get(1).isVisible())
-                    p.getHand().get(1).flipCard();
-            }
-            else if (p.getHand().get(1).isVisible())
-            {
-                if (!p.getHand().get(0).isVisible())
-                    p.getHand().get(1).flipCard();
-            }
-            else
-            {
-                Scanner sc = new Scanner(System.in);
-                String choice;
-                do
-                {
-                    choice = sc.nextLine();
-                    if (choice != "0" && choice != "1")
-                        System.out.println("Choisissez une carte à retourner");
-                } while (choice != "0" && choice != "1");
-                p.getHand().get(Integer.parseInt(choice)).flipCard();
-            }
-        }
-        if (trickPile.peek().getName().equals("The Other Hat Trick"))
+        if (!trickPile.empty() && trickPile.peek().getName().equals("The Other Hat Trick"))
             tryOnLastTrick++;
     }
     
@@ -222,10 +138,10 @@ public class Game {
         seventhProp = (Prop)propDeck.draw();
     }
     
-    private void drawTrick()
+    public void drawTrick()
     {
         Trick t = (Trick)trickDeck.draw();
-        t.flipCard();
+        t.setVisible(true);
         trickPile.push(t);
     }
     
@@ -251,14 +167,19 @@ public class Game {
     {
         int i = 1;
         for (Player p : players)
-            System.out.println(i++ + " " + p.getName() + " : " + p.getScore() + " pts");
+            System.out.println(i++ + " " + p.toString());
     }
     
     public void showBoard()
     {
+        if(trickPile.empty())
+            drawTrick();
+        
+        System.out.println("\n******************");
         for (Player p : players)
         {
-            System.out.println(p.getName());
+            p.updateScore();
+            System.out.println(p);
             for (Prop pr : p.getHand())
                 System.out.println(pr.toString());
             
@@ -269,8 +190,23 @@ public class Game {
         System.out.println(trickPile.peek());
         System.out.println("******************\n");
     }
+    
+    public void showOtherPlayers(Player currentPlayer)
+    {
+        int i = 0;
+        for (Player p : players)
+        {
+            if (!p.equals(currentPlayer))
+                System.out.println(i + " : " + p.toString());
+            i++;
+        }
+    }
 
     public Prop getSeventhProp() { return seventhProp; }
     
+    public void setSeventhProp(Prop p) { seventhProp = p; }
+    
     public List<Player> getPlayers() { return players; }
+
+    public Stack<Trick> getTrickPile() { return trickPile; }
 }
