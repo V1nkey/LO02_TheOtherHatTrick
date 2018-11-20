@@ -130,12 +130,6 @@ public abstract class Player {
     @Override
     public int hashCode() { return name.length(); }
     
-    public int compareTo(Object o) 
-    {
-        Player p = (Player)o;
-        return Integer.compare(this.score, p.score);
-    }
-    
     @Override
     public String toString() { return (name + " : " + score + " pts"); }
     

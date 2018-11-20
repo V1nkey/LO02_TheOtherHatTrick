@@ -23,17 +23,22 @@ public class TheOtherHatTrick {
         
         List<PlayerReal> realPlayers = new ArrayList();
         for (int i = 0; i < 3; i++)
-            realPlayers.add(new PlayerReal("Player " + i, 6-i));
-        
+        {
+            int age = (int)(Math.random()*40) + 10;
+            System.out.println(i + " " + age);
+            realPlayers.add(new PlayerReal("Player " + i, age));
+        }
         int k = 0;
         game.initGame(realPlayers);
         
         do
         {
             Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());
-            game.playTurn(currentPlayer);
             game.showBoard();
+            game.playTurn(currentPlayer);
             k++;
         } while (!game.isEnded());
+        
+        game.endGame();
     }
 }

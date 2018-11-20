@@ -32,7 +32,7 @@ public class PlayerIA extends Player {
     {
         if (!super.getHand().get(0).isVisible() && !super.getHand().get(1).isVisible())
         {
-            int choice = (int)(Math.random()) % 2;
+            int choice = (int)(Math.random() * 100 % 2);
             super.getHand().get(choice).setVisible(true);
         }
         else

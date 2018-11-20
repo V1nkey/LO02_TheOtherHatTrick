@@ -70,22 +70,20 @@ public class Game {
         trickDeck.shuffleButOne("The Other Hat Trick");
         propDeck.shuffle();
         
-        Collections.sort(physicalPlayers);
+        physicalPlayers.sort((PlayerReal p1, PlayerReal p2) -> p1.getAge() < p2.getAge() ? -1 : 1);
         for (PlayerReal pr : physicalPlayers)
             players.add(pr);
         
         createBotPlayers(3 - physicalPlayers.size());
         
         deal();
-        drawTrick();
-        showBoard();
     }
     
     public void playTurn(Player p)
     {
         p.play(this);
 
-        if (!trickPile.empty() && trickPile.peek().getName().equals("The Other Hat Trick"))
+        if (!trickPile.empty() && trickPile.peek().equals("The Other Hat Trick"))
             tryOnLastTrick++;
     }
     
@@ -93,7 +91,7 @@ public class Game {
     {
         if (trickDeck.getCards().isEmpty())
         {
-            if (!trickPile.contains("The Other Hat Trick"))
+            if (!trickPile.contains(new Card("The Other Hat Trick")))
                 return true;
             
             else if (tryOnLastTrick == players.size())
@@ -150,16 +148,16 @@ public class Game {
         for (Player p : players)
                 p.countPoints();
 
-        if (trickPile.contains("The Other Hat Trick"))
+        if (trickPile.contains(new Card("The Other Hat Trick")))
             for (Player p : players)
             {
-                if (p.getHand().contains("The Hat"))
+                if (p.getHand().contains(new Card("The Hat")))
                     p.setPenalty();
                 
-                if (p.getHand().contains("The Other Rabbit"))
+                if (p.getHand().contains(new Card("The Other Rabbit")))
                     p.setPenalty();
             }
-        players.sort((Player p1, Player p2) -> p1.getScore() < p2.getScore() ? -1 : 1);
+        players.sort((Player p1, Player p2) -> p1.getScore() < p2.getScore() ? 1 : -1);
         showFinalRanking();
     }
     
@@ -209,4 +207,6 @@ public class Game {
     public List<Player> getPlayers() { return players; }
 
     public Stack<Trick> getTrickPile() { return trickPile; }
+    
+    public Deck getTrickDeck() { return trickDeck; }
 }

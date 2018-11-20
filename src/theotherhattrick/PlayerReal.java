@@ -32,17 +32,20 @@ public class PlayerReal extends Player implements Comparable {
         System.out.println(this + " à toi de jouer");
         System.out.println("******************");
         
-        if(game.getTrickPile().empty())
+        if(game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
             game.drawTrick();
         
         Trick currentTrick = game.getTrickPile().peek();
         
-        if(!choseTrick(currentTrick))
+        if (!currentTrick.equals(new Card("The Other Hat Trick")))
         {
-            game.drawTrick();
-            currentTrick = game.getTrickPile().peek();
-            System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
-            System.out.println("******************");
+            if(!choseTrick(currentTrick))
+            {
+                game.drawTrick();
+                currentTrick = game.getTrickPile().peek();
+                System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
+                System.out.println("******************");
+            }
         }
         
         exchangeCardDialogue();
@@ -78,7 +81,7 @@ public class PlayerReal extends Player implements Comparable {
     {
         if (!super.getHand().get(0).isVisible() && !super.getHand().get(1).isVisible())
         {
-            System.out.println("Choisissez une carte à retourner");
+            System.out.println("Choisis une carte à retourner");
             showHand(true);
             Scanner sc = new Scanner(System.in);
             String choice;
@@ -86,7 +89,7 @@ public class PlayerReal extends Player implements Comparable {
             {
                 choice = sc.nextLine();
                 if (!choice.equals("0") && !choice.equals("1"))
-                    System.out.println("Choisissez une carte à retourner");
+                    System.out.println("Choisis une carte à retourner");
             } while (!choice.equals("0") && !choice.equals("1"));
             super.getHand().get(Integer.parseInt(choice)).setVisible(true);
         }
@@ -143,7 +146,7 @@ public class PlayerReal extends Player implements Comparable {
     private void exchangeCardDialogue()
     {
         // A faire : Choisir une de ses cartes
-        System.out.println("Choisissez une de vos cartes à échanger");
+        System.out.println("Choisis une de tes cartes à échanger");
         seeHand();
         Scanner sc = new Scanner(System.in);
         String cardChoice;
@@ -152,13 +155,13 @@ public class PlayerReal extends Player implements Comparable {
         {
             cardChoice = sc.nextLine();
             if (!cardChoice.equals("0") && !cardChoice.equals("1"))
-                System.out.println("Choisissez une de vos cartes à donner");
+                System.out.println("Choisis une de tes cartes à échanger");
         } while (!cardChoice.equals("0") && !cardChoice.equals("1"));
         
         int ownCardIndex = Integer.parseInt(cardChoice);
         
         // Choix du joueur
-        System.out.println("Choisissez un joueur avec qui échanger une carte");
+        System.out.println("Choisis un joueur avec qui échanger une carte");
         Game.getInstance().showOtherPlayers(this);
         
 //        Scanner sc = new Scanner(System.in);
@@ -172,14 +175,14 @@ public class PlayerReal extends Player implements Comparable {
             playerChoice = sc.nextLine();
             
             if (!playerChoice.equals("0") && !playerChoice.equals("1") && !playerChoice.equals("2"))
-                System.out.println("Choisissez un joueur avec qui échanger une carte");
+                System.out.println("Choisis un joueur avec qui échanger une carte");
             else
             {
                 playerChoiceIndex = Integer.parseInt(playerChoice);
                 if (playerChoiceIndex == currentPlayerIndex)
                 {
-                    System.out.println("Vous ne pouvez pas changer de carte avec vous-même");
-                    System.out.println("Choisissez un joueur avec qui échanger une carte");
+                    System.out.println("Tu ne peux pas changer de carte avec toi-même");
+                    System.out.println("Choisis un joueur avec qui échanger une carte");
                 }
                 else
                     continueDialgue = false;
@@ -189,13 +192,13 @@ public class PlayerReal extends Player implements Comparable {
         Player otherPlayer = Game.getInstance().getPlayers().get(playerChoiceIndex);
         
         // Choix de la carte du joueur
-        System.out.println("Choisissez une cartes à récupérer");
+        System.out.println("Choisis une carte à récupérer");
         otherPlayer.showHand(false);
         do
         {
             cardChoice = sc.nextLine();
             if (!cardChoice.equals("0") && !cardChoice.equals("1"))
-                System.out.println("Choisissez une cartes à récupérer");
+                System.out.println("Choisis une carte à récupérer");
         } while (!cardChoice.equals("0") && !cardChoice.equals("1"));
         
         int otherPlayerCardIndex = Integer.parseInt(cardChoice);

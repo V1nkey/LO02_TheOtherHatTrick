@@ -45,7 +45,8 @@ public class Card {
     {
         if (o instanceof String)
         {
-            if (this.name.equalsIgnoreCase((String)o))
+            String str = (String)o;
+            if (this.name.equalsIgnoreCase(str))
                 return true;
             else
                 return false;
