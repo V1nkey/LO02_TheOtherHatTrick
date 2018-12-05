@@ -31,6 +31,7 @@ public class Game {
     private Stack<Trick> trickPile;
     private List<Player> players;
     private int tryOnLastTrick;
+    private Player currentPlayer;
     
     private Game() 
     {
@@ -73,14 +74,15 @@ public class Game {
         physicalPlayers.sort((PlayerReal p1, PlayerReal p2) -> p1.getAge() < p2.getAge() ? -1 : 1);
         for (PlayerReal pr : physicalPlayers)
             players.add(pr);
-        
+
         createBotPlayers(3 - physicalPlayers.size());
-        
+
         deal();
     }
     
     public void playTurn(Player p)
     {
+        this.currentPlayer = p;
         p.play(this);
 
         if (!trickPile.empty() && trickPile.peek().equals("The Other Hat Trick"))
@@ -209,4 +211,8 @@ public class Game {
     public Stack<Trick> getTrickPile() { return trickPile; }
     
     public Deck getTrickDeck() { return trickDeck; }
+
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
 }
