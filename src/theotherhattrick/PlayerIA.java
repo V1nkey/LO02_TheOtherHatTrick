@@ -5,9 +5,6 @@
  */
 package theotherhattrick;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -26,29 +23,8 @@ public class PlayerIA extends Player {
 
     @Override
     public void play(Game game) {
-        System.out.println("******************");
-        System.out.println("Au " + this + " de jouer");
-        System.out.println("******************");
-
-        if (game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
-            game.drawTrick();
-
-        Trick currentTrick = game.getTrickPile().peek();
-        System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
-        System.out.println("******************");
-
-        if (!currentTrick.equals(new Card("The Other Hat Trick"))) {
-            if (currentTrick.isDoable(this.getHand()) || ((!currentTrick.getCombination().get(0).contains(this.getHand().get(0))) && (!currentTrick.getCombination().get(1).contains(this.getHand().get(0)))) && (!currentTrick.getCombination().get(0).contains(this.getHand().get(1))) && (!currentTrick.getCombination().get(1).contains(this.getHand().get(1)))) { // si il ne peut pas du tout, changer de trick
-                this.strategy = new Strategy2();
-                this.strategy.play(game);
-            }
-            this.strategy = new Strategy1();
-            this.strategy.play(game);
-
-        } else {
-            this.strategy = new Strategy1();
-            this.strategy.play(game);
-        }
+        this.strategy = new StrategyEasy();
+        this.strategy.play(game, this);
     }
 
     @Override

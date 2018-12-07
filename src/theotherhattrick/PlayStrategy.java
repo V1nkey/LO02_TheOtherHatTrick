@@ -10,7 +10,7 @@ package theotherhattrick;
  * @author v1nkey
  */
 public interface PlayStrategy {
-    public void play(Game game);
+    public void play(Game game, PlayerIA player);
     
     /*
         TO DO :
