@@ -10,7 +10,7 @@ public class StrategyEasy implements PlayStrategy {
         System.out.println("Au " + player + " de jouer");
         System.out.println("******************");
 
-        if (game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
+        if (game.getTrickPile().isEmpty() && !game.getTrickDeck().isEmpty())
             game.drawTrick();
 
         Trick currentTrick = game.getTrickPile().peek();
@@ -38,8 +38,8 @@ public class StrategyEasy implements PlayStrategy {
             player.exchangeCard(0, otherPlayers.get(random.nextInt(2)), random.nextInt(2));
         }
 
-        if (currentTrick.isDoable(game.getCurrentPlayer().getHand())) {
-            game.getCurrentPlayer().performedTrickRoutine();
+        if (currentTrick.isDoable(player.getHand())) {
+            player.performedTrickRoutine();
         } else {
             System.out.println("Trick raté");
             System.out.println("******************");

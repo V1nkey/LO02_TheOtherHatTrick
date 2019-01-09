@@ -6,16 +6,7 @@
 package theotherhattrick;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.Stack;
-import java.util.TreeMap;
+import java.util.*;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -28,17 +19,16 @@ public class Game {
     private Prop seventhProp;
     private Deck trickDeck;
     private Deck propDeck;
-    private Stack<Trick> trickPile;
+    private LinkedList<Trick> trickPile;
     private List<Player> players;
     private int tryOnLastTrick;
-    private Player currentPlayer;
     
     private Game() 
     {
         seventhProp = null;
         trickDeck = null;
         propDeck = null;
-        trickPile = new Stack();
+        trickPile = new LinkedList();
         players = new ArrayList();
         tryOnLastTrick = 0;
     }
@@ -53,25 +43,27 @@ public class Game {
     
     public void initGame(List<PlayerReal> physicalPlayers)
     {
-//        JFileChooser fileChooser = new JFileChooser(new File(".."));
-//        fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
-//        File cardsFile = null;
-//        
-//        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-//            cardsFile = fileChooser.getSelectedFile();
-//        else 
-//            return;
+        JFileChooser fileChooser = new JFileChooser(new File(".."));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
+        File cardsFile = null;
+
+        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            cardsFile = fileChooser.getSelectedFile();
+        else
+            return;
         
         List<Object> objCards;
         CardFactory cf = CardFactory.getInstance();
-//        objCards = cf.parse(cardsFile.getAbsolutePath());
-        objCards = cf.parse("../cards.csv");
+        objCards = cf.parse(cardsFile.getAbsolutePath());
+        //objCards = cf.parse("../cards.csv");
         createDecks(objCards);
         
         trickDeck.shuffleButOne("The Other Hat Trick");
         propDeck.shuffle();
-        
-        physicalPlayers.sort((PlayerReal p1, PlayerReal p2) -> p1.getAge() < p2.getAge() ? -1 : 1);
+
+        if (!physicalPlayers.isEmpty())
+            physicalPlayers.sort((PlayerReal p1, PlayerReal p2) -> p1.getAge() < p2.getAge() ? -1 : 1);
+
         for (PlayerReal pr : physicalPlayers)
             players.add(pr);
 
@@ -82,10 +74,9 @@ public class Game {
     
     public void playTurn(Player p)
     {
-        this.currentPlayer = p;
         p.play(this);
 
-        if (!trickPile.empty() && trickPile.peek().equals("The Other Hat Trick"))
+        if (!trickPile.isEmpty() && trickPile.peek().equals("The Other Hat Trick"))
             tryOnLastTrick++;
     }
     
@@ -172,7 +163,7 @@ public class Game {
     
     public void showBoard()
     {
-        if(trickPile.empty())
+        if(trickPile.isEmpty())
             drawTrick();
         
         System.out.println("\n******************");
@@ -208,11 +199,8 @@ public class Game {
     
     public List<Player> getPlayers() { return players; }
 
-    public Stack<Trick> getTrickPile() { return trickPile; }
+    public LinkedList<Trick> getTrickPile() { return trickPile; }
     
     public Deck getTrickDeck() { return trickDeck; }
 
-    public Player getCurrentPlayer() {
-        return this.currentPlayer;
-    }
 }

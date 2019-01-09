@@ -5,6 +5,7 @@
  */
 package theotherhattrick;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,16 @@ public class TheOtherHatTrick {
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = Game.getInstance();
-        
+
+        Form form = new Form(game);
+        JFrame frame = new JFrame("Form");
+        frame.setSize(700, 500);
+        frame.setContentPane(form.getPanel1());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
         List<PlayerReal> realPlayers = new ArrayList();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             int age = (int)(Math.random()*40) + 10;
             System.out.println(i + " " + age);
@@ -30,6 +38,8 @@ public class TheOtherHatTrick {
         }
         int k = 0;
         game.initGame(realPlayers);
+
+        form.refreshView();
         
         do
         {
@@ -37,6 +47,7 @@ public class TheOtherHatTrick {
             game.showBoard();
             game.playTurn(currentPlayer);
             k++;
+            form.refreshView();
         } while (!game.isEnded());
         
         game.endGame();

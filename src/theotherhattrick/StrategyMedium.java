@@ -10,7 +10,7 @@ public class StrategyMedium implements PlayStrategy {
         System.out.println("Au " + player + " de jouer");
         System.out.println("******************");
 
-        if (game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
+        if (game.getTrickPile().isEmpty() && !game.getTrickDeck().isEmpty())
             game.drawTrick();
 
         Trick currentTrick = game.getTrickPile().peek();
@@ -40,8 +40,8 @@ public class StrategyMedium implements PlayStrategy {
                     testHand.add(player.getHand().get(0));
                     testHand.add(otherPlayerProp);
                     if (otherPlayerProp.isVisible() && currentTrick.isDoable(testHand)) {
-                        System.out.println("CARTE 0: " + player.getHand().get(0).getName() + ", CARTE 1: " + player.getHand().get(1).getName());
-                        System.out.println("BON CHOIX ICI: " + otherPlayerProp.getName());
+                        //System.out.println("CARTE 0: " + player.getHand().get(0).getName() + ", CARTE 1: " + player.getHand().get(1).getName());
+                        //System.out.println("BON CHOIX ICI: " + otherPlayerProp.getName());
                         otherPlayerRef = otherPlayer;
                         otherPlayerPropIndex = otherPlayer.getHand().indexOf(otherPlayerProp);
                     }
@@ -63,8 +63,8 @@ public class StrategyMedium implements PlayStrategy {
                     testHand.add(player.getHand().get(0));
                     testHand.add(otherPlayerProp);
                     if (otherPlayerProp.isVisible() && currentTrick.isDoable(testHand)) {
-                        System.out.println("CARTE 0: " + player.getHand().get(0).getName() + ", CARTE 1: " + player.getHand().get(1).getName());
-                        System.out.println("BON CHOIX ICI: " + otherPlayerProp.getName());
+                        //System.out.println("CARTE 0: " + player.getHand().get(0).getName() + ", CARTE 1: " + player.getHand().get(1).getName());
+                        //System.out.println("BON CHOIX ICI: " + otherPlayerProp.getName());
                         otherPlayerRef = otherPlayer;
                         otherPlayerPropIndex = otherPlayer.getHand().indexOf(otherPlayerProp);
                     }
@@ -78,8 +78,8 @@ public class StrategyMedium implements PlayStrategy {
             }
         }
 
-        if (currentTrick.isDoable(game.getCurrentPlayer().getHand())) {
-            game.getCurrentPlayer().performedTrickRoutine();
+        if (currentTrick.isDoable(player.getHand())) {
+            player.performedTrickRoutine();
         } else {
             System.out.println("Trick raté");
             System.out.println("******************");

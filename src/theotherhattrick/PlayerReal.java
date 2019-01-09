@@ -32,7 +32,7 @@ public class PlayerReal extends Player implements Comparable {
         System.out.println(this + " à toi de jouer");
         System.out.println("******************");
         
-        if(game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
+        if(game.getTrickPile().isEmpty() && !game.getTrickDeck().isEmpty())
             game.drawTrick();
         
         Trick currentTrick = game.getTrickPile().peek();

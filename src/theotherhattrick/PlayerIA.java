@@ -23,7 +23,7 @@ public class PlayerIA extends Player {
 
     @Override
     public void play(Game game) {
-        this.strategy = new StrategyEasy();
+        this.strategy = new StrategyMedium();
         this.strategy.play(game, this);
     }
 
@@ -47,6 +47,9 @@ public class PlayerIA extends Player {
         getPerformedTricks().add(t);
         System.out.println("Ta-Dah !");
         getHand().add(Game.getInstance().getSeventhProp());
+
+        for (Card c : super.getHand())
+            c.setVisible(false);
 
         Random random = new Random();
         int newSeventhPropIndex = random.nextInt(3);
