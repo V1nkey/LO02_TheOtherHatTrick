@@ -21,7 +21,7 @@ public class PickWindow extends JFrame {
     private JLabel label1;
     private ArrayList<JButton> buttons;
 
-    public PickWindow(MainWindow mainWindow) {
+    public PickWindow() {
 
         this.setTitle("Pick window");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

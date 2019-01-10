@@ -155,9 +155,8 @@ public class MainWindow extends JFrame {
     }
 
     public void chooseCard() {
-        PickWindow pickWindow = new PickWindow(this);
+        PickWindow pickWindow = new PickWindow();
         pickWindow.showCards();
-        refreshView();
     }
 
     public void exchange(Player player, int index) {

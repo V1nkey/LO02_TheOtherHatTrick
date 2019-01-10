@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="159" column="22" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="22" />
+            <state relative-caret-position="136">
+              <caret line="157" column="47" selection-start-line="157" selection-start-column="47" selection-end-line="157" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -56,8 +56,8 @@
       <file leaf-file-name="PickWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/PickWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+            <state relative-caret-position="210">
+              <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
               <folding>
                 <element signature="e#1773#1774#0" expanded="true" />
                 <element signature="e#1807#1808#0" expanded="true" />
@@ -70,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PickWindowController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PickWindowController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/theotherhattrick/controllers/PickWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
+            <state relative-caret-position="492">
               <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -128,9 +128,9 @@
         <option value="$PROJECT_DIR$/theotherhattrick/Game.java" />
         <option value="$PROJECT_DIR$/theotherhattrick/ThreadScanner.java" />
         <option value="$PROJECT_DIR$/views/ConsoleView.java" />
-        <option value="$PROJECT_DIR$/views/MainWindow.java" />
         <option value="$PROJECT_DIR$/theotherhattrick/controllers/PickWindowController.java" />
         <option value="$PROJECT_DIR$/views/PickWindow.java" />
+        <option value="$PROJECT_DIR$/views/MainWindow.java" />
       </list>
     </option>
   </component>
@@ -710,17 +710,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/MainWindow.java">
+    <entry file="file://$PROJECT_DIR$/theotherhattrick/controllers/PickWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="159" column="22" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="22" />
+        <state relative-caret-position="492">
+          <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/PickWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+        <state relative-caret-position="210">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="e#1773#1774#0" expanded="true" />
             <element signature="e#1807#1808#0" expanded="true" />
@@ -732,13 +735,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/theotherhattrick/controllers/PickWindowController.java">
+    <entry file="file://$PROJECT_DIR$/views/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="157" column="47" selection-start-line="157" selection-start-column="47" selection-end-line="157" selection-end-column="47" />
         </state>
       </provider>
     </entry>
