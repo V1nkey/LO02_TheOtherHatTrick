@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainWindow {
+public class MainWindow extends JFrame {
     private JPanel panel1;
     private JPanel bottomPanel;
     private JPanel leftPanel;
