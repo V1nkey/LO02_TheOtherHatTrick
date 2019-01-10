@@ -14,10 +14,43 @@ import java.util.Scanner;
 public class PlayerReal extends Player implements Comparable {
     private int age;
     
+    //Flags for the console view
+    private boolean chosingTrick;
+    private boolean trickChosen;
+    private boolean trickChoice;
+    
+    private boolean exchangingCard;
+    private boolean ownCardChosen;
+    private boolean otherCardChosen;
+    private int ownCardIndex;
+    private Player playerToExchangeWith;
+    private int otherCardIndex;
+    
+    private boolean performingTrick;
+    
+    private boolean needToTurn;
+    private boolean cardTurned;
+    private int cardToBeTurned;
+    
+    private boolean discardingCard;
+    private boolean cardDiscarded;
+    private int cardToBeDiscarded;
+    
+    //ENLEVER LES BOUCLES ET LES VARIABLES SI CA MARCHE AVEC LA VUE GRAPHIQUE
+    
     public PlayerReal(String name) 
     {
         super(name);
         age = 0;
+        
+        trickChosen = false;
+        trickChoice = false;
+        exchangingCard = false;
+        ownCardChosen = false;
+        otherCardChosen = false;
+        needToTurn = false;
+        cardTurned = false;
+        discardingCard = false;
     }
     
     public PlayerReal(String name, int age) 
@@ -26,231 +59,134 @@ public class PlayerReal extends Player implements Comparable {
         this.age = age;
     }
     
-//    public void play(Game game)
-//    {
-//        System.out.println("******************");
-//        System.out.println(this + " à toi de jouer");
-//        System.out.println("******************");
-//        
-//        if(game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
-//            game.drawTrick();
-//        
-//        Trick currentTrick = game.getTrickPile().peek();
-//        
-//        if (!currentTrick.equals(new Card("The Other Hat Trick")))
-//        {
-//            if(!choseTrick(currentTrick))
-//            {
-//                game.drawTrick();
-//                currentTrick = game.getTrickPile().peek();
-//                System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
-//                System.out.println("******************");
-//            }
-//        }
-//        
-//        exchangeCardDialogue();
-//        
-//        if(currentTrick.isDoable(super.getHand()))
-//        {
-//            if (doTrick(currentTrick))
-//                performedTrickRoutine();
-//            
-//            else
-//            {
-//                System.out.println("Trick raté");
-//                System.out.println("******************");
-//                turnOverCard();
-//            }
-//        }
-//        else
-//        {
-//            System.out.println("Trick raté");
-//            System.out.println("******************");
-//            turnOverCard();
-//        }
-//    }
+    @Override
+    public boolean choseTrick(Trick t)
+    {
+        chosingTrick = true;
+        setChanged();
+        notifyObservers();
+        
+//        while (!trickChosen);
+        
+        trickChosen = false;
+        setChanged();
+        return trickChoice;
+    }
+    
+    @Override
+    public void exchangeCard() 
+    { 
+        exchangingCard = true;
+        setChanged();
+        notifyObservers();
+        
+        selectCardToGive();
+        selectCardToGet();
+        super.exchangeCard(ownCardIndex, playerToExchangeWith, otherCardIndex);
+        setChanged();
+    }
+    
+    private void selectCardToGive()
+    {
+        while (!ownCardChosen);
+        ownCardChosen = false;
+    }
+    
+    private void selectCardToGet()
+    {
+        while (!otherCardChosen);
+        otherCardChosen = false;
+    }
+    
+    @Override
+    public boolean doTrick(Trick t)
+    {
+        setPerformingTrick(true);
+        setChanged();
+        notifyObservers();
+        
+        if (!isTrickAlreadyPerformed())
+        {
+            while(!isPerformTrickChosen());
+            setPerformTrickChosen(false);
+        }
+        
+        setTrickAlreadyPerformed(true);
+        setChanged();
+        
+        boolean willBeDone = isPerformTrick();
+        setPerformTrick(willBeDone);
+//        setChanged();
+        
+        return willBeDone;
+    }
     
     @Override
     public void turnOverCard()
     {
         if (!super.getHand().get(0).isVisible() && !super.getHand().get(1).isVisible())
         {
-            System.out.println("Choisis une carte à retourner");
-            showHand(true);
-            Scanner sc = new Scanner(System.in);
-            String choice;
-            do
-            {
-                choice = sc.nextLine();
-                if (!choice.equals("0") && !choice.equals("1"))
-                    System.out.println("Choisis une carte à retourner");
-            } while (!choice.equals("0") && !choice.equals("1"));
-            super.getHand().get(Integer.parseInt(choice)).setVisible(true);
+            needToTurn = true;
+            setChanged();
+            notifyObservers();
+            
+            
+            
+            super.getHand().get(cardToBeTurned).setVisible(true);
         }
         else
             super.turnOverCardNoChoice();
     }
     
     @Override
-    public boolean choseTrick(Trick t)
-    {
-        Scanner sc = new Scanner(System.in);
-        String choice;
-        System.out.println("Trick : " + t + " : " + t.getNbPoints() + " pts");
-       
-        seeHand();
-        
-        do
-        {
-            System.out.println("Choisir ce trick ? O / N");
-            choice = sc.nextLine().toLowerCase();
-            
-            if (!choice.equals("o") && !choice.equals("n"))
-                System.out.println("Merci d'entrer O ou N");
-            
-        } while (!choice.equals("o") && !choice.equals("n"));
-        
-        if (choice.equals("o"))
-            return true;
-        
-        return false;
-    }
-    
-    @Override
-    public boolean doTrick(Trick t)
-    {
-        Scanner sc = new Scanner(System.in);
-        String choice;
-        System.out.println("Trick : " + t);
-        do
-        {
-            System.out.println("Réaliser ce trick ? O / N");
-            choice = sc.nextLine().toLowerCase();
-            
-            if (!choice.equals("o") && !choice.equals("n"))
-                System.out.println("Merci d'entrer O ou N");
-            
-        } while (!choice.equals("o") && !choice.equals("n"));
-        
-        if (choice.equals("o"))
-            return true;
-        
-        return false;
-    }
-    
-    @Override
-    public void exchangeCard() { exchangeCardDialogue(); }
-    
-    private void exchangeCardDialogue()
-    {
-        // A faire : Choisir une de ses cartes
-        System.out.println("Choisis une de tes cartes à échanger");
-        seeHand();
-        Scanner sc = new Scanner(System.in);
-        String cardChoice;
-
-        do
-        {
-            cardChoice = sc.nextLine();
-            if (!cardChoice.equals("0") && !cardChoice.equals("1"))
-                System.out.println("Choisis une de tes cartes à échanger");
-        } while (!cardChoice.equals("0") && !cardChoice.equals("1"));
-        
-        int ownCardIndex = Integer.parseInt(cardChoice);
-        
-        // Choix du joueur
-        System.out.println("Choisis un joueur avec qui échanger une carte");
-        Game.getInstance().showOtherPlayers(this);
-        
-//        Scanner sc = new Scanner(System.in);
-        String playerChoice;
-        int currentPlayerIndex = Game.getInstance().getPlayers().indexOf(this);
-        int playerChoiceIndex = 0;
-        boolean continueDialgue = true;
-
-        do
-        {
-            playerChoice = sc.nextLine();
-            
-            if (!playerChoice.equals("0") && !playerChoice.equals("1") && !playerChoice.equals("2"))
-                System.out.println("Choisis un joueur avec qui échanger une carte");
-            else
-            {
-                playerChoiceIndex = Integer.parseInt(playerChoice);
-                if (playerChoiceIndex == currentPlayerIndex)
-                {
-                    System.out.println("Tu ne peux pas changer de carte avec toi-même");
-                    System.out.println("Choisis un joueur avec qui échanger une carte");
-                }
-                else
-                    continueDialgue = false;
-            }
-        } while (continueDialgue);
-        
-        Player otherPlayer = Game.getInstance().getPlayers().get(playerChoiceIndex);
-        
-        // Choix de la carte du joueur
-        System.out.println("Choisis une carte à récupérer");
-        otherPlayer.showHand(false);
-        do
-        {
-            cardChoice = sc.nextLine();
-            if (!cardChoice.equals("0") && !cardChoice.equals("1"))
-                System.out.println("Choisis une carte à récupérer");
-        } while (!cardChoice.equals("0") && !cardChoice.equals("1"));
-        
-        int otherPlayerCardIndex = Integer.parseInt(cardChoice);
-        
-        // Echange
-        super.exchangeCard(ownCardIndex, otherPlayer, otherPlayerCardIndex);
-    }
-    
-    @Override
     public Card discardCard() 
     { 
-        System.out.println("Choisissez une carte à remettre au milieu");
-        showHand(true);
-        Scanner sc = new Scanner(System.in);
-        String choice;
-
-        do
-        {
-            choice = sc.nextLine();
-            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
-                System.out.println("Choisissez une carte à remettre au milieu");
-        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));
+        discardingCard = true;
+        setChanged();
+        notifyObservers();
         
-        return super.getHand().remove(Integer.parseInt(choice));
+        return super.getHand().remove(cardToBeDiscarded);
     }
     
-    public void seeHand()
-    {
-        Scanner sc = new Scanner(System.in);
-        String choiceHand;
-        do
-        {
-            System.out.println("Voir tes cartes ? O / N");
-            choiceHand = sc.nextLine().toLowerCase();
-            
-            if (!choiceHand.equals("o") && !choiceHand.equals("n"))
-                System.out.println("Merci d'entrer O ou N");
-            
-        } while (!choiceHand.equals("o") && !choiceHand.equals("n"));
-        
-        if (choiceHand.equals("o"))
-        {
-            int i = 0;
-            for (Card c : super.getHand())
-                System.out.println(i++ + " - " + seeCard(c));
-        }
-    }
-
-    public int getAge() { return age; }
-
     @Override
     public int compareTo(Object o) 
     {
         PlayerReal pr = (PlayerReal)o;
         return Integer.compare(this.age, pr.age);
     }
+    
+    public int getAge() { return age; }
+    
+    public boolean isChosingTrick() { return chosingTrick; }
+    public void setChosingTrick(boolean chosingTrick) { this.chosingTrick = chosingTrick; }
+
+    public boolean isTrickChosen() { return trickChosen; }
+    public void setTrickChosen(boolean hasChosenTrick) { this.trickChosen = hasChosenTrick; }
+    public void setTrickChoice(boolean choiceTrick) { this.trickChoice = choiceTrick; }
+
+    public boolean isExchangingCard() { return exchangingCard; }
+    public void setExchangingCard(boolean exchangingCard) { this.exchangingCard = exchangingCard; }
+
+    public boolean isOwnCardChosen() { return ownCardChosen; }
+    public void setOwnCardChosen(boolean ownCardChosen) { this.ownCardChosen = ownCardChosen; }
+    public void setOwnCardIndex(int ownCardIndex) { this.ownCardIndex = ownCardIndex; }
+
+    public boolean isOtherCardChosen() { return otherCardChosen; }
+    public void setOtherCardChosen(boolean otherCardChosen) { this.otherCardChosen = otherCardChosen; }
+    public void setOtherCardIndex(int otherCardIndex) { this.otherCardIndex = otherCardIndex; }
+
+    public void setPlayerToExchangeWith(Player playerToExchangeWith) { this.playerToExchangeWith = playerToExchangeWith; }
+
+    public boolean isPerformingTrick() { return performingTrick; }
+    public void setPerformingTrick(boolean performingTrick) { this.performingTrick = performingTrick; }
+    
+    public boolean isNeedToTurn() { return needToTurn; }
+    public void setNeedToTurn(boolean needToTurn) { this.needToTurn = needToTurn; }
+    public void setCardTurned(boolean cardTurned) { this.cardTurned = cardTurned; }
+    public void setCardToBeTurned(int cardToBeTurned) { this.cardToBeTurned = cardToBeTurned; }
+
+    public boolean isDiscardingCard() { return discardingCard; }
+    public void setDiscardingCard(boolean discardingCard) { this.discardingCard = discardingCard; }
+    public void setCardToBeDiscarded(int cardToBeDiscarded) { this.cardToBeDiscarded = cardToBeDiscarded; }
+    public void setCardDiscarded(boolean cardDiscarded) { this.cardDiscarded = cardDiscarded; }
 }

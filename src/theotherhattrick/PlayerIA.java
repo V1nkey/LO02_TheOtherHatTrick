@@ -5,9 +5,6 @@
  */
 package theotherhattrick;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -58,7 +55,18 @@ public class PlayerIA extends Player {
     public void exchangeCard() { strategy.exchangeCard(); }
 
     @Override
-    public boolean doTrick(Trick t) { return strategy.doTrick(t); }
+    public boolean doTrick(Trick t) 
+    {
+        setTrickAlreadyPerformed(true);
+        setChanged();
+        
+        boolean willBeDone = strategy.doTrick(t);
+        setPerformTrick(willBeDone);
+        setChanged();
+        notifyObservers();
+        
+        return willBeDone;
+    }
 
     @Override
     public Card discardCard() { return strategy.discardCard(); }

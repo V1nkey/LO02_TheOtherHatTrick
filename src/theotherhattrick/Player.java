@@ -14,10 +14,16 @@ import java.util.Observable;
  * @author v1nkey
  */
 public abstract class Player extends Observable {
+    //Variables
     private String name;
     private List<Trick> performedTricks;
     private List<Prop> hand;
     private int score;
+    
+    //Flags
+    private boolean performTrick;
+    private boolean performTrickChosen;
+    private boolean trickAlreadyPerformed;
 
     public Player(String name) 
     {
@@ -92,7 +98,7 @@ public abstract class Player extends Observable {
     {
         Trick t = Game.getInstance().getTrickPile().pop();
         performedTricks.add(t);
-        System.out.println("Ta-Dah !");
+//        System.out.println("Ta-Dah !");
         hand.add(Game.getInstance().getSeventhProp());
         
         for (Card c : hand)
@@ -114,6 +120,16 @@ public abstract class Player extends Observable {
         else
             for (Card c : hand)
                 System.out.println(i++ + " - " + c);
+    }
+    
+    public void showHand(boolean allCardsVisible, int index)
+    {
+        if (allCardsVisible)
+            for (Card c : hand)
+                System.out.println(index++ + " - " + c.getName());
+        else
+            for (Card c : hand)
+                System.out.println(index++ + " - " + c);
     }
     
     public void setPenalty() { score -= 3; }
@@ -146,4 +162,13 @@ public abstract class Player extends Observable {
     public List<Trick> getPerformedTricks() { return performedTricks; }
     
     public int getScore() { return score; }
+
+    public boolean isPerformTrick() { return performTrick; }
+    public void setPerformTrick(boolean performTrick) { this.performTrick = performTrick; }
+
+    public boolean isPerformTrickChosen() { return performTrickChosen; }
+    public void setPerformTrickChosen(boolean performTrickChosen) { this.performTrickChosen = performTrickChosen; }
+
+    public boolean isTrickAlreadyPerformed() { return trickAlreadyPerformed; }
+    public void setTrickAlreadyPerformed(boolean trickAlreadyPerformed) { this.trickAlreadyPerformed = trickAlreadyPerformed; }
 }

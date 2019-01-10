@@ -13,14 +13,20 @@ import java.util.List;
  */
 public class Trick extends Card 
 {
+    //Variables
     private int nbPoints;
     private List<List<Prop>> combination;
+    
+    //Flags
+    private boolean currentlyDoable;
 
     public Trick(String name, int nbPoints, List<List<Prop>> combination) 
     {
         super(name);
         this.nbPoints = nbPoints;
         this.combination = combination;
+        
+        currentlyDoable = false;
     }
 
     public Trick(String name, int nbPoints, List<List<Prop>> combination, boolean visible) 
@@ -28,14 +34,29 @@ public class Trick extends Card
         super(name, visible);
         this.nbPoints = nbPoints;
         this.combination = combination;
+        
+        currentlyDoable = false;
     }
     
     public boolean isDoable(List<Prop> props)
     {
-        return ((combination.get(0).contains(props.get(0)) && combination.get(1).contains(props.get(1))) || (combination.get(0).contains(props.get(1)) && combination.get(1).contains(props.get(0))));
+        currentlyDoable = (combination.get(0).contains(props.get(0)) && combination.get(1).contains(props.get(1))) || (combination.get(0).contains(props.get(1)) && combination.get(1).contains(props.get(0)));
+        setChanged();
+        notifyObservers();
+        return currentlyDoable;
+    }
+    
+    @Override
+    public String toString() 
+    {
+        if (super.isVisible())
+            return (super.getName() + " : " + nbPoints + " pts");
+        else
+            return "Vous ne pouvez pas voir cette carte";
     }
 
     public int getNbPoints() { return nbPoints; }
     public List<List<Prop>> getCombination() { return combination; }
-    
+
+    public boolean isCurrentlyDoable() { return currentlyDoable; } 
 }

@@ -18,6 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author v1nkey
  */
 public class Game extends Observable {
+    //Variables
     private static Game game = null;
     private Prop seventhProp;
     private Deck trickDeck;
@@ -26,9 +27,12 @@ public class Game extends Observable {
     private List<Player> players;
     private int tryOnLastTrick;
     private Player currentPlayer;
+    private Trick currentTrick;
     
-    //flag to know if the game started running
+    //Flags
     private boolean running;
+    private boolean newTurn;
+    private boolean newTrickPicked;
     
     private Game() 
     {
@@ -38,7 +42,10 @@ public class Game extends Observable {
         trickPile = new Stack();
         players = new ArrayList();
         tryOnLastTrick = 0;
+        
         running = false;
+        newTurn = false;
+        newTrickPicked = false;
     }
     
     public static Game getInstance()
@@ -59,10 +66,10 @@ public class Game extends Observable {
 //            cardsFile = fileChooser.getSelectedFile();
 //        else 
 //            return;
-        if (running)
-            return;
-        
-        running = true;
+//        if (running)
+//            return;
+//        
+//        running = true;
         
         List<Object> objCards;
         CardFactory cf = CardFactory.getInstance();
@@ -80,23 +87,36 @@ public class Game extends Observable {
         createBotPlayers(3 - physicalPlayers.size());
 
         deal();
+        drawTrick();
     }
     
     public void playTurn(Player p)
     {
         this.currentPlayer = p;
+        p.setTrickAlreadyPerformed(false);
         
-        Trick currentTrick = trickPile.peek();
+        newTurn = true;
+        currentTrick = trickPile.empty() ? null : trickPile.peek();
+        setChanged();
+        notifyObservers();
+        
+        newTurn = false;
+        setChanged();
+        
 //        System.out.print("Test " + p);
         
         if (!currentTrick.equals(new Card("The Other Hat Trick")))
         {
-            if(!p.choseTrick(currentTrick))
+            if((currentTrick == null) || !p.choseTrick(currentTrick))
             {
                 drawTrick();
                 currentTrick = trickPile.peek();
-                System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
-                System.out.println("******************");
+                newTrickPicked = true;
+                setChanged();
+                notifyObservers();
+                
+                newTrickPicked = false;
+                setChanged();
             }
         }
         else 
@@ -110,18 +130,10 @@ public class Game extends Observable {
                 p.performedTrickRoutine();
             
             else
-            {
-                System.out.println("Trick raté");
-                System.out.println("******************");
                 p.turnOverCard();
-            }
         }
         else
-        {
-            System.out.println("Trick raté");
-            System.out.println("******************");
             p.turnOverCard();
-        }
     }
     
     public boolean isEnded()
@@ -201,10 +213,9 @@ public class Game extends Observable {
             }
         }
         players.sort((Player p1, Player p2) -> p1.getScore() < p2.getScore() ? 1 : -1);
-//        showFinalRanking();
     }
     
-    private void showFinalRanking()
+    public void showFinalRanking()
     {   
         int i = 1;
         for (Player p : players)
@@ -232,15 +243,11 @@ public class Game extends Observable {
         System.out.println("******************\n");
     }
     
-    public void showOtherPlayers(Player currentPlayer)
+    public List<Player> getOtherPlayers(Player p)
     {
-        int i = 0;
-        for (Player p : players)
-        {
-            if (!p.equals(currentPlayer))
-                System.out.println(i + " : " + p.toString());
-            i++;
-        }
+        List<Player> otherPlayers = new ArrayList(players);
+        otherPlayers.remove(p);
+        return otherPlayers;
     }
 
     public Prop getSeventhProp() { return seventhProp; }
@@ -254,6 +261,12 @@ public class Game extends Observable {
     public Deck getTrickDeck() { return trickDeck; }
 
     public Player getCurrentPlayer() { return this.currentPlayer; }
+    
+    public Trick getCurrentTrick() { return currentTrick; }
 
     public boolean isRunning() { return running; }   
+    
+    public boolean isNewTurn() { return newTurn; }
+
+    public boolean isNewTrickPicked() { return newTrickPicked; }
 }
