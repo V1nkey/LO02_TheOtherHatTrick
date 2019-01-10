@@ -37,6 +37,7 @@ public class MainWindow extends JFrame {
         setContentPane(getPanel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        refreshView();
 
         trickBt.addActionListener(new ActionListener() {
             @Override
@@ -155,15 +156,8 @@ public class MainWindow extends JFrame {
 
     public void chooseCard() {
         PickWindow pickWindow = new PickWindow(this);
-
-        JFrame frame = new JFrame("PickWindow");
-        pickWindow.addFrame(frame);
-        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        frame.setSize(600, 200);
-        frame.setContentPane(pickWindow.getPanel());
-        frame.setVisible(true);
-
-        pickWindow.showCards(game.getPlayers(), game.getCurrentPlayer());
+        pickWindow.showCards();
+        refreshView();
     }
 
     public void exchange(Player player, int index) {

@@ -1,6 +1,8 @@
 package views;
 
+import theotherhattrick.Game;
 import theotherhattrick.Player;
+import theotherhattrick.controllers.PickWindowController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,8 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PickWindow {
-    private JFrame frame;
+public class PickWindow extends JFrame {
     private JPanel panel1;
     private JButton card00;
     private JButton card01;
@@ -19,45 +20,21 @@ public class PickWindow {
     private JLabel label0;
     private JLabel label1;
     private ArrayList<JButton> buttons;
-    private List<Player> players;
-    private MainWindow mainWindow;
 
     public PickWindow(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
 
-        card00.addActionListener(new ActionListener() { // ajouter le contrôleur
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.exchange(players.get(0), 0);
-                frame.dispose();
-            }
-        });
-        card01.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.exchange(players.get(0), 1);
-                frame.dispose();
-            }
-        });
-        card10.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.exchange(players.get(1), 0);
-                frame.dispose();
-            }
-        });
-        card11.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.exchange(players.get(1), 1);
-                frame.dispose();
-            }
-        });
+        this.setTitle("Pick window");
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setSize(600, 200);
+        this.setContentPane(this.getPanel());
+        this.setVisible(true);
+
+        new PickWindowController(this, card00, card01, card10, card11);
     }
 
-    public void showCards(List<Player> players, Player currentPlayer) {
+    public void showCards() {
         this.buttons = new ArrayList<JButton>();
-        this.players = new ArrayList<Player>();
+        List<Player> players = Game.getInstance().getOtherPlayers(Game.getInstance().getCurrentPlayer());
 
         this.buttons.add(card00);
         this.buttons.add(card01);
@@ -66,21 +43,14 @@ public class PickWindow {
 
         int i = 0;
         for (Player player : players) {
-            if (player != currentPlayer) {
-                this.players.add(player);
-                buttons.get(i).setText(player.getHand().get(0).toString());
-                i++;
-                buttons.get(i).setText(player.getHand().get(1).toString());
-                i++;
-            }
+            buttons.get(i).setText(player.getHand().get(0).toString());
+            i++;
+            buttons.get(i).setText(player.getHand().get(1).toString());
+            i++;
         }
 
-        label0.setText(this.players.get(0).getName());
-        label1.setText(this.players.get(1).getName());
-    }
-
-    public void addFrame(JFrame frame) {
-        this.frame = frame;
+        label0.setText(players.get(0).getName());
+        label1.setText(players.get(1).getName());
     }
 
     public JPanel getPanel() {
