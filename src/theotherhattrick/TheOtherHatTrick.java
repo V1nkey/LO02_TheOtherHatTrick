@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author v1nkey
  */
 public class TheOtherHatTrick {
@@ -22,34 +21,32 @@ public class TheOtherHatTrick {
         // TODO code application logic here
         Game game = Game.getInstance();
 
-        Form form = new Form(game);
-        JFrame frame = new JFrame("Form");
+        MainWindow mainWindow = new MainWindow(game);
+
+        JFrame frame = new JFrame("MainWindow");
         frame.setSize(700, 500);
-        frame.setContentPane(form.getPanel1());
+        frame.setContentPane(mainWindow.getPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
         List<PlayerReal> realPlayers = new ArrayList();
-        for (int i = 0; i < 1; i++)
-        {
-            int age = (int)(Math.random()*40) + 10;
+        for (int i = 0; i < 2; i++) {
+            int age = (int) (Math.random() * 40) + 10;
             System.out.println(i + " " + age);
             realPlayers.add(new PlayerReal("Player " + i, age));
         }
         int k = 0;
         game.initGame(realPlayers);
 
-        form.refreshView();
-        
-        do
-        {
-            Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());
+        do {
+            Player currentPlayer = game.getPlayers().get(k % game.getPlayers().size());
             game.showBoard();
+            mainWindow.refreshView();
             game.playTurn(currentPlayer);
             k++;
-            form.refreshView();
+            mainWindow.refreshView();
         } while (!game.isEnded());
-        
+
         game.endGame();
     }
 }

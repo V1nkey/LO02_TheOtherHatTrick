@@ -26,54 +26,48 @@ public class PlayerReal extends Player implements Comparable {
         this.age = age;
     }
     
-    public void play(Game game)
-    {
-        System.out.println("******************");
-        System.out.println(this + " à toi de jouer");
-        System.out.println("******************");
-        
-        if(game.getTrickPile().isEmpty() && !game.getTrickDeck().isEmpty())
-            game.drawTrick();
-        
-        Trick currentTrick = game.getTrickPile().peek();
-        
-        if (!currentTrick.equals(new Card("The Other Hat Trick")))
-        {
-            if(!choseTrick(currentTrick))
-            {
-                game.drawTrick();
-                currentTrick = game.getTrickPile().peek();
-                System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
-                System.out.println("******************");
-            }
-        }
-        
-        exchangeCardDialogue();
-        
-        if(currentTrick.isDoable(super.getHand()))
-        {
-            if (doTrick(currentTrick))
-                performedTrickRoutine();
-            
-            else
-            {
-                System.out.println("Trick raté");
-                System.out.println("******************");
-                turnOverCard();
-            }
-        }
-        else
-        {
-            System.out.println("Trick raté");
-            System.out.println("******************");
-            turnOverCard();
-        }
-    }
-    
-//    public void seeCard()
+//    public void play(Game game)
 //    {
-//        for (Card card : super.getHand())
-//            System.out.println(card.toString());
+//        System.out.println("******************");
+//        System.out.println(this + " à toi de jouer");
+//        System.out.println("******************");
+//        
+//        if(game.getTrickPile().empty() && !game.getTrickDeck().isEmpty())
+//            game.drawTrick();
+//        
+//        Trick currentTrick = game.getTrickPile().peek();
+//        
+//        if (!currentTrick.equals(new Card("The Other Hat Trick")))
+//        {
+//            if(!choseTrick(currentTrick))
+//            {
+//                game.drawTrick();
+//                currentTrick = game.getTrickPile().peek();
+//                System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
+//                System.out.println("******************");
+//            }
+//        }
+//        
+//        exchangeCardDialogue();
+//        
+//        if(currentTrick.isDoable(super.getHand()))
+//        {
+//            if (doTrick(currentTrick))
+//                performedTrickRoutine();
+//            
+//            else
+//            {
+//                System.out.println("Trick raté");
+//                System.out.println("******************");
+//                turnOverCard();
+//            }
+//        }
+//        else
+//        {
+//            System.out.println("Trick raté");
+//            System.out.println("******************");
+//            turnOverCard();
+//        }
 //    }
     
     @Override
@@ -94,7 +88,7 @@ public class PlayerReal extends Player implements Comparable {
             super.getHand().get(Integer.parseInt(choice)).setVisible(true);
         }
         else
-            super.turnOverCard();
+            super.turnOverCardNoChoice();
     }
     
     @Override
@@ -122,6 +116,7 @@ public class PlayerReal extends Player implements Comparable {
         return false;
     }
     
+    @Override
     public boolean doTrick(Trick t)
     {
         Scanner sc = new Scanner(System.in);
@@ -142,6 +137,9 @@ public class PlayerReal extends Player implements Comparable {
         
         return false;
     }
+    
+    @Override
+    public void exchangeCard() { exchangeCardDialogue(); }
     
     private void exchangeCardDialogue()
     {
@@ -205,6 +203,24 @@ public class PlayerReal extends Player implements Comparable {
         
         // Echange
         super.exchangeCard(ownCardIndex, otherPlayer, otherPlayerCardIndex);
+    }
+    
+    @Override
+    public Card discardCard() 
+    { 
+        System.out.println("Choisissez une carte à remettre au milieu");
+        showHand(true);
+        Scanner sc = new Scanner(System.in);
+        String choice;
+
+        do
+        {
+            choice = sc.nextLine();
+            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
+                System.out.println("Choisissez une carte à remettre au milieu");
+        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));
+        
+        return super.getHand().remove(Integer.parseInt(choice));
     }
     
     public void seeHand()

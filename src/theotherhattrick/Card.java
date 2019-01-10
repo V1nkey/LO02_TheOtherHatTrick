@@ -5,11 +5,13 @@
  */
 package theotherhattrick;
 
+import java.util.Observable;
+
 /**
  *
  * @author v1nkey
  */
-public class Card {
+public class Card extends Observable {
     private String name;
     private boolean visible;
 
@@ -66,5 +68,10 @@ public class Card {
     
     public boolean isVisible() { return visible; }
     
-    public void setVisible(boolean visible) { this.visible = visible; }
+    public void setVisible(boolean visible) 
+    { 
+        this.visible = visible; 
+        setChanged();
+        notifyObservers();
+    }
 }

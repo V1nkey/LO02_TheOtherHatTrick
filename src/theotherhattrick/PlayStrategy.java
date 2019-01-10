@@ -9,15 +9,15 @@ package theotherhattrick;
  *
  * @author v1nkey
  */
-public interface PlayStrategy {
-    public void play(Game game, PlayerIA player);
+public interface PlayStrategy 
+{
+    public boolean choseTrick(Trick t);
     
-    /*
-        TO DO :
-        Creer une methode abstraite play() dans Player
-        Redéfinir play() dans PlayerReal en utilisant les autres méthodes de Player
-        Redéfinir play() dans PlayerIA en utilisant la Strategy
-        Implémenter les différentes Strategy
-        Clear le code dans Game
-    */
+    public boolean doTrick(Trick t);
+    
+    public void turnOverCard();
+    
+    public void exchangeCard();
+    
+    public Card discardCard();
 }

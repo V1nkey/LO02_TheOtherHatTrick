@@ -6,7 +6,10 @@
 package theotherhattrick;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Stack;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -14,23 +17,28 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author v1nkey
  */
-public class Game {
+public class Game extends Observable {
     private static Game game = null;
     private Prop seventhProp;
     private Deck trickDeck;
     private Deck propDeck;
-    private LinkedList<Trick> trickPile;
+    private Stack<Trick> trickPile;
     private List<Player> players;
     private int tryOnLastTrick;
+    private Player currentPlayer;
+    
+    //flag to know if the game started running
+    private boolean running;
     
     private Game() 
     {
         seventhProp = null;
         trickDeck = null;
         propDeck = null;
-        trickPile = new LinkedList();
+        trickPile = new Stack();
         players = new ArrayList();
         tryOnLastTrick = 0;
+        running = false;
     }
     
     public static Game getInstance()
@@ -43,27 +51,29 @@ public class Game {
     
     public void initGame(List<PlayerReal> physicalPlayers)
     {
-        JFileChooser fileChooser = new JFileChooser(new File(".."));
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
-        File cardsFile = null;
-
-        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-            cardsFile = fileChooser.getSelectedFile();
-        else
+//        JFileChooser fileChooser = new JFileChooser(new File(".."));
+//        fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
+//        File cardsFile = null;
+//        
+//        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+//            cardsFile = fileChooser.getSelectedFile();
+//        else 
+//            return;
+        if (running)
             return;
+        
+        running = true;
         
         List<Object> objCards;
         CardFactory cf = CardFactory.getInstance();
-        objCards = cf.parse(cardsFile.getAbsolutePath());
-        //objCards = cf.parse("../cards.csv");
+//        objCards = cf.parse(cardsFile.getAbsolutePath());
+        objCards = cf.parse("../cards.csv");
         createDecks(objCards);
         
         trickDeck.shuffleButOne("The Other Hat Trick");
         propDeck.shuffle();
-
-        if (!physicalPlayers.isEmpty())
-            physicalPlayers.sort((PlayerReal p1, PlayerReal p2) -> p1.getAge() < p2.getAge() ? -1 : 1);
-
+        
+        physicalPlayers.sort((PlayerReal p1, PlayerReal p2) -> p1.getAge() < p2.getAge() ? -1 : 1);
         for (PlayerReal pr : physicalPlayers)
             players.add(pr);
 
@@ -74,10 +84,44 @@ public class Game {
     
     public void playTurn(Player p)
     {
-        p.play(this);
-
-        if (!trickPile.isEmpty() && trickPile.peek().equals("The Other Hat Trick"))
+        this.currentPlayer = p;
+        
+        Trick currentTrick = trickPile.peek();
+//        System.out.print("Test " + p);
+        
+        if (!currentTrick.equals(new Card("The Other Hat Trick")))
+        {
+            if(!p.choseTrick(currentTrick))
+            {
+                drawTrick();
+                currentTrick = trickPile.peek();
+                System.out.println("Trick : " + currentTrick + " : " + currentTrick.getNbPoints() + " pts");
+                System.out.println("******************");
+            }
+        }
+        else 
             tryOnLastTrick++;
+        
+        p.exchangeCard();
+        
+        if(currentTrick.isDoable(p.getHand()))
+        {
+            if (p.doTrick(currentTrick))
+                p.performedTrickRoutine();
+            
+            else
+            {
+                System.out.println("Trick raté");
+                System.out.println("******************");
+                p.turnOverCard();
+            }
+        }
+        else
+        {
+            System.out.println("Trick raté");
+            System.out.println("******************");
+            p.turnOverCard();
+        }
     }
     
     public boolean isEnded()
@@ -118,7 +162,11 @@ public class Game {
     private void createBotPlayers(int nbBots)
     {
         for (int i = 0; i < nbBots; i++)
-            players.add(new PlayerIA("Bot " + i));
+        {
+            PlayerIA ia = new PlayerIA("Bot " + i);
+            ia.setStrategy(new Strategy1((ia)));
+            players.add(ia);
+        }
     }
     
     private void deal()
@@ -142,6 +190,7 @@ public class Game {
                 p.countPoints();
 
         if (trickPile.contains(new Card("The Other Hat Trick")))
+        {
             for (Player p : players)
             {
                 if (p.getHand().contains(new Card("The Hat")))
@@ -150,12 +199,13 @@ public class Game {
                 if (p.getHand().contains(new Card("The Other Rabbit")))
                     p.setPenalty();
             }
+        }
         players.sort((Player p1, Player p2) -> p1.getScore() < p2.getScore() ? 1 : -1);
-        showFinalRanking();
+//        showFinalRanking();
     }
     
     private void showFinalRanking()
-    {
+    {   
         int i = 1;
         for (Player p : players)
             System.out.println(i++ + " " + p.toString());
@@ -163,7 +213,7 @@ public class Game {
     
     public void showBoard()
     {
-        if(trickPile.isEmpty())
+        if(trickPile.empty())
             drawTrick();
         
         System.out.println("\n******************");
@@ -199,8 +249,11 @@ public class Game {
     
     public List<Player> getPlayers() { return players; }
 
-    public LinkedList<Trick> getTrickPile() { return trickPile; }
+    public Stack<Trick> getTrickPile() { return trickPile; }
     
     public Deck getTrickDeck() { return trickDeck; }
 
+    public Player getCurrentPlayer() { return this.currentPlayer; }
+
+    public boolean isRunning() { return running; }   
 }

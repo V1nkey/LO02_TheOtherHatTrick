@@ -5,6 +5,9 @@
  */
 package theotherhattrick;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -13,8 +16,12 @@ import java.util.Random;
 public class PlayerIA extends Player {
     private PlayStrategy strategy;
 
-    public PlayerIA(String name) {
+    public PlayerIA(String name) { super(name); }
+    
+    public PlayerIA(String name, PlayStrategy ps) 
+    {
         super(name);
+        strategy = ps;
     }
 
     public void setStrategy(PlayStrategy strategy) {
@@ -22,35 +29,22 @@ public class PlayerIA extends Player {
     }
 
     @Override
-    public void play(Game game) {
-        this.strategy = new StrategyMedium();
-        this.strategy.play(game, this);
-    }
+    public boolean choseTrick(Trick t) { return strategy.choseTrick(t); }
 
     @Override
-    public boolean choseTrick(Trick t) {
-        return true;
-    }
-
-    @Override
-    public void turnOverCard() {
-        if (!super.getHand().get(0).isVisible() && !super.getHand().get(1).isVisible()) {
-            int choice = (int) (Math.random() * 100 % 2);
-            super.getHand().get(choice).setVisible(true);
-        } else
-            super.turnOverCard();
-    }
+    public void turnOverCard() { strategy.turnOverCard(); }
 
     @Override
     public void performedTrickRoutine() {
         Trick t = Game.getInstance().getTrickPile().pop();
         getPerformedTricks().add(t);
+        updateScore();
         System.out.println("Ta-Dah !");
         getHand().add(Game.getInstance().getSeventhProp());
 
-        for (Card c : super.getHand())
+        for (Card c : getHand())
             c.setVisible(false);
-
+        
         Random random = new Random();
         int newSeventhPropIndex = random.nextInt(3);
 
@@ -59,4 +53,13 @@ public class PlayerIA extends Player {
 
         Game.getInstance().setSeventhProp(newSeventhProp);
     }
+
+    @Override
+    public void exchangeCard() { strategy.exchangeCard(); }
+
+    @Override
+    public boolean doTrick(Trick t) { return strategy.doTrick(t); }
+
+    @Override
+    public Card discardCard() { return strategy.discardCard(); }
 }

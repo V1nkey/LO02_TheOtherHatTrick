@@ -7,13 +7,13 @@ package theotherhattrick;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Observable;
 
 /**
  *
  * @author v1nkey
  */
-public abstract class Player {
+public abstract class Player extends Observable {
     private String name;
     private List<Trick> performedTricks;
     private List<Prop> hand;
@@ -27,8 +27,6 @@ public abstract class Player {
         score = 0;
     }
     
-    public abstract void play(Game game);
-    
     public void updateScore() { score = countPoints(); }
     
     public int countPoints()
@@ -40,6 +38,8 @@ public abstract class Player {
         return nbPoints;
     }
     
+    public abstract void exchangeCard();
+    
     public void exchangeCard(int ownCardIndex, Player otherPlayer, int otherPlayerCardIndex)
     {
         Card cardToGive = hand.remove(ownCardIndex);
@@ -47,28 +47,34 @@ public abstract class Player {
         
         hand.add((Prop)cardToGet);
         otherPlayer.getHand().add((Prop)cardToGive);
+        
+        setChanged();
+        notifyObservers();
     }
     
     public abstract boolean choseTrick(Trick t);
     
-    public Card discardCard() 
-    { 
-        System.out.println("Choisissez une carte à remettre au milieu");
-        showHand(true);
-        Scanner sc = new Scanner(System.in);
-        String choice;
-
-        do
-        {
-            choice = sc.nextLine();
-            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
-                System.out.println("Choisissez une carte à remettre au milieu");
-        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));
-        
-        return hand.remove(Integer.parseInt(choice));
-    }
+    public abstract boolean doTrick(Trick t);
     
-    public void turnOverCard()
+    public abstract Card discardCard();
+//    { 
+//        System.out.println("Choisissez une carte à remettre au milieu");
+//        showHand(true);
+//        Scanner sc = new Scanner(System.in);
+//        String choice;
+//
+//        do
+//        {
+//            choice = sc.nextLine();
+//            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
+//                System.out.println("Choisissez une carte à remettre au milieu");
+//        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));
+//        
+//        return hand.remove(Integer.parseInt(choice));
+//    }
+    public abstract void turnOverCard();
+    
+    public void turnOverCardNoChoice()
     {
         if (hand.get(0).isVisible())
         {

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author v1nkey
  */
-public class CardFactory implements Parsable {
+public class CardFactory {
     private static CardFactory instance = null;
     
     private CardFactory() {}
@@ -33,7 +33,6 @@ public class CardFactory implements Parsable {
         return instance;
     }
 
-    @Override
     public List<Object> parse(String fileName) 
     {
         BufferedReader br = null;
