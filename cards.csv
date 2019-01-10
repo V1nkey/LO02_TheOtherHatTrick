@@ -1,0 +1,14 @@
+prop;The Rabbit;
+prop;The Other Rabbit;
+prop;The Hat;
+prop;Carrots;
+prop;Carrots;
+prop;Carrots;
+prop;The Lettuce;
+trick;The Carrot Hat Trick;3;The Hat;Carrots;
+trick;The Hungry Rabbit;5;The Rabbit;The Other Rabbit;Carrots;The Lettuce;
+trick;The Vegetable Patch;3;Carrots;The Lettuce;
+trick;The Slightly Easier Hat Trick;4;The Rabbit;The Other Rabbit;The Hat;
+trick;The Other Hat Trick;6;The Hat;The Other Rabbit;
+trick;The Bunch Of Carrots;2;Carrots;Carrots;
+trick;The Rabbit That Didn't Like Carrots;4;The Rabbit;The Other Rabbit;The Lettuce;

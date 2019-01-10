@@ -19,51 +19,51 @@ public abstract class Player extends Observable {
     private List<Trick> performedTricks;
     private List<Prop> hand;
     private int score;
-    
+
     //Flags
     private boolean performTrick;
     private boolean performTrickChosen;
     private boolean trickAlreadyPerformed;
 
-    public Player(String name) 
+    public Player(String name)
     {
         this.name = name;
         performedTricks = new ArrayList();
         hand = new ArrayList();
         score = 0;
     }
-    
+
     public void updateScore() { score = countPoints(); }
-    
+
     public int countPoints()
     {
         int nbPoints = 0;
         for (Trick t : performedTricks)
             nbPoints += t.getNbPoints();
-        
+
         return nbPoints;
     }
-    
+
     public abstract void exchangeCard();
-    
+
     public void exchangeCard(int ownCardIndex, Player otherPlayer, int otherPlayerCardIndex)
     {
         Card cardToGive = hand.remove(ownCardIndex);
         Card cardToGet = otherPlayer.getHand().remove(otherPlayerCardIndex);
-        
+
         hand.add((Prop)cardToGet);
         otherPlayer.getHand().add((Prop)cardToGive);
-        
+
         setChanged();
         notifyObservers();
     }
-    
+
     public abstract boolean choseTrick(Trick t);
-    
+
     public abstract boolean doTrick(Trick t);
-    
+
     public abstract Card discardCard();
-//    { 
+    //    {
 //        System.out.println("Choisissez une carte à remettre au milieu");
 //        showHand(true);
 //        Scanner sc = new Scanner(System.in);
@@ -79,7 +79,7 @@ public abstract class Player extends Observable {
 //        return hand.remove(Integer.parseInt(choice));
 //    }
     public abstract void turnOverCard();
-    
+
     public void turnOverCardNoChoice()
     {
         if (hand.get(0).isVisible())
@@ -93,24 +93,24 @@ public abstract class Player extends Observable {
                 hand.get(0).setVisible(true);
         }
     }
-    
+
     public void performedTrickRoutine()
     {
         Trick t = Game.getInstance().getTrickPile().pop();
         performedTricks.add(t);
 //        System.out.println("Ta-Dah !");
         hand.add(Game.getInstance().getSeventhProp());
-        
+
         for (Card c : hand)
             c.setVisible(false);
-                
+
         Prop newSevethProp = (Prop)discardCard();
-        
+
         Game.getInstance().setSeventhProp(newSevethProp);
     }
-    
+
     public String seeCard(Card c) { return c.getName(); }
-    
+
     public void showHand(boolean allCardsVisible)
     {
         int i = 0;
@@ -121,7 +121,7 @@ public abstract class Player extends Observable {
             for (Card c : hand)
                 System.out.println(i++ + " - " + c);
     }
-    
+
     public void showHand(boolean allCardsVisible, int index)
     {
         if (allCardsVisible)
@@ -131,9 +131,9 @@ public abstract class Player extends Observable {
             for (Card c : hand)
                 System.out.println(index++ + " - " + c);
     }
-    
+
     public void setPenalty() { score -= 3; }
-    
+
     @Override
     public boolean equals(Object o)
     {
@@ -148,19 +148,19 @@ public abstract class Player extends Observable {
         else
             return false;
     }
-    
+
     @Override
     public int hashCode() { return name.length(); }
-    
+
     @Override
     public String toString() { return (name + " : " + score + " pts"); }
-    
+
     public String getName() { return name; }
 
     public List<Prop> getHand() { return hand; }
 
     public List<Trick> getPerformedTricks() { return performedTricks; }
-    
+
     public int getScore() { return score; }
 
     public boolean isPerformTrick() { return performTrick; }

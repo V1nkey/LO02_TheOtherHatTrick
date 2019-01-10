@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4352750b-2dc2-4e55-9a7b-349daa19df45" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cards.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.classpath" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LO02_TheOtherHatTrick.eml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LO02_TheOtherHatTrick.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/LO02_TheOtherHatTrick.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/AbstractLayout.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/DimensionInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/GridLayoutManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/HorizontalInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/LayoutState.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/Spacer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/SupportCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/Util.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/VerticalInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Card.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/CardButtonListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/CardFactory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Deck.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Game.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$8.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$8.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Parsable.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayStrategy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Player.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayerIA.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayerReal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Prop.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Strategy1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Strategy2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/TheOtherHatTrick.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Trick.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/src.userlibraries" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/CardButtonListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/DiscardWindow.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/DiscardWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/MainWindow.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/MainWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/MainWindoww.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/PickWindow.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/PickWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/PlayStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/PlayStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/PlayerIA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/PlayerIA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/Strategy1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/Strategy1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/Strategy2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/Strategy2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3270">
+              <caret line="282" lean-forward="true" selection-start-line="282" selection-end-line="282" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerIA.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayStrategy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/theotherhattrick/Game.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/PlayerIA.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/PlayStrategy.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/Player.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="77" />
+    <option name="y" value="47" />
+    <option name="width" value="1279" />
+    <option name="height" value="701" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LO02_TheOtherHatTrick" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LO02_TheOtherHatTrick" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LO02_TheOtherHatTrick" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LO02_TheOtherHatTrick" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LO02_TheOtherHatTrick" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LO02_TheOtherHatTrick" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="theotherhattrick" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547135418557" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="TheOtherHatTrick" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="theotherhattrick.TheOtherHatTrick" />
+      <module name="LO02_TheOtherHatTrick" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="theotherhattrick.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TheOtherHatTrick" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4352750b-2dc2-4e55-9a7b-349daa19df45" name="Default Changelist" comment="" />
+      <created>1547134179483</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1547134179483</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13806863" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27850163" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/CardFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3270">
+          <caret line="282" lean-forward="true" selection-start-line="282" selection-end-line="282" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerIA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -9,17 +9,17 @@ package theotherhattrick;
  *
  * @author v1nkey
  */
-public interface PlayStrategy 
+public interface PlayStrategy
 {
     public boolean choseTrick(Trick t);
-    
+
     public boolean doTrick(Trick t);
-    
+
     public void turnOverCard();
-    
+
     public void exchangeCard();
-    
+
     public Card discardCard();
-    
-    
+
+
 }

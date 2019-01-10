@@ -22,7 +22,7 @@ public class TheOtherHatTrick {
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = Game.getInstance();
-        
+
         List<PlayerReal> realPlayers = new ArrayList();
         for (int i = 0; i < 1; i++)
         {
@@ -32,7 +32,7 @@ public class TheOtherHatTrick {
         }
         int k = 0;
         game.initGame(realPlayers);
-        
+
 //        GraphicView gv = new GraphicView();
         ConsoleView cv = new ConsoleView();
 //        do
@@ -42,7 +42,7 @@ public class TheOtherHatTrick {
 //            game.playTurn(currentPlayer);
 //            k++;
 //        } while (!game.isEnded());
-//        
+//
 //        game.endGame();
     }
 }

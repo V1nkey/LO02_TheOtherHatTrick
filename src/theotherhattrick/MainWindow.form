@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="theotherhattrick.MainWindow">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="593" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="94fdb" binding="bottomPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties>
+          <minimumSize width="0" height="0"/>
+          <preferredSize width="0" height="70"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="c9a4a" class="javax.swing.JLabel" binding="player0Label">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="f7c3" class="javax.swing.JButton" binding="card00">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <component id="17dab" class="javax.swing.JButton" binding="card01">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Button"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="31bc9" binding="leftPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="West"/>
+        <properties>
+          <preferredSize width="150" height="0"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="74e35" class="javax.swing.JLabel" binding="player1Label">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="c6a43" class="javax.swing.JButton" binding="card10">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <component id="a99f0" class="javax.swing.JButton" binding="card11">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Button"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="8eaae" binding="rightPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="East"/>
+        <properties>
+          <preferredSize width="150" height="0"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="e900d" class="javax.swing.JLabel" binding="player2Label">
+            <constraints/>
+            <properties>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="ecaf1" class="javax.swing.JButton" binding="card20">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <component id="b55e3" class="javax.swing.JButton" binding="card21">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Button"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="18f84" binding="centerPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="efa21" class="javax.swing.JButton" binding="trickBt">
+            <constraints/>
+            <properties>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <component id="2c512" class="javax.swing.JButton" binding="doTrickBt">
+            <constraints/>
+            <properties>
+              <text value="Faire le trick"/>
+            </properties>
+          </component>
+          <component id="7f121" class="javax.swing.JLabel" binding="propLabel">
+            <constraints/>
+            <properties>
+              <requestFocusEnabled value="true"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

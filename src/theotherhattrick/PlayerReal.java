@@ -13,36 +13,36 @@ import java.util.Scanner;
  */
 public class PlayerReal extends Player implements Comparable {
     private int age;
-    
+
     //Flags for the console view
     private boolean chosingTrick;
     private boolean trickChosen;
     private boolean trickChoice;
-    
+
     private boolean exchangingCard;
     private boolean ownCardChosen;
     private boolean otherCardChosen;
     private int ownCardIndex;
     private Player playerToExchangeWith;
     private int otherCardIndex;
-    
+
     private boolean performingTrick;
-    
+
     private boolean needToTurn;
     private boolean cardTurned;
     private int cardToBeTurned;
-    
+
     private boolean discardingCard;
     private boolean cardDiscarded;
     private int cardToBeDiscarded;
-    
+
     //ENLEVER LES BOUCLES ET LES VARIABLES SI CA MARCHE AVEC LA VUE GRAPHIQUE
-    
-    public PlayerReal(String name) 
+
+    public PlayerReal(String name)
     {
         super(name);
         age = 0;
-        
+
         trickChosen = false;
         trickChoice = false;
         exchangingCard = false;
@@ -52,75 +52,75 @@ public class PlayerReal extends Player implements Comparable {
         cardTurned = false;
         discardingCard = false;
     }
-    
-    public PlayerReal(String name, int age) 
+
+    public PlayerReal(String name, int age)
     {
         super(name);
         this.age = age;
     }
-    
+
     @Override
     public boolean choseTrick(Trick t)
     {
         chosingTrick = true;
         setChanged();
         notifyObservers();
-        
+
         while (!trickChosen);
-        
+
         trickChosen = false;
         setChanged();
         return trickChoice;
     }
-    
+
     @Override
-    public void exchangeCard() 
-    { 
+    public void exchangeCard()
+    {
         exchangingCard = true;
         setChanged();
         notifyObservers();
-        
+
         selectCardToGive();
         selectCardToGet();
         super.exchangeCard(ownCardIndex, playerToExchangeWith, otherCardIndex);
         setChanged();
     }
-    
+
     private void selectCardToGive()
     {
         while (!ownCardChosen);
         ownCardChosen = false;
     }
-    
+
     private void selectCardToGet()
     {
         while (!otherCardChosen);
         otherCardChosen = false;
     }
-    
+
     @Override
     public boolean doTrick(Trick t)
     {
         setPerformingTrick(true);
         setChanged();
         notifyObservers();
-        
+
         if (!isTrickAlreadyPerformed())
         {
             while(!isPerformTrickChosen());
             setPerformTrickChosen(false);
         }
-        
+
         setTrickAlreadyPerformed(true);
         setChanged();
-        
+
         boolean willBeDone = isPerformTrick();
         setPerformTrick(willBeDone);
 //        setChanged();
-        
+
         return willBeDone;
     }
-    
+
     @Override
     public void turnOverCard()
     {
@@ -129,34 +129,34 @@ public class PlayerReal extends Player implements Comparable {
             needToTurn = true;
             setChanged();
             notifyObservers();
-            
-            
-            
+
+
+
             super.getHand().get(cardToBeTurned).setVisible(true);
         }
         else
             super.turnOverCardNoChoice();
     }
-    
+
     @Override
-    public Card discardCard() 
-    { 
+    public Card discardCard()
+    {
         discardingCard = true;
         setChanged();
         notifyObservers();
-        
+
         return super.getHand().remove(cardToBeDiscarded);
     }
-    
+
     @Override
-    public int compareTo(Object o) 
+    public int compareTo(Object o)
     {
         PlayerReal pr = (PlayerReal)o;
         return Integer.compare(this.age, pr.age);
     }
-    
+
     public int getAge() { return age; }
-    
+
     public boolean isChosingTrick() { return chosingTrick; }
     public void setChosingTrick(boolean chosingTrick) { this.chosingTrick = chosingTrick; }
 
@@ -179,7 +179,7 @@ public class PlayerReal extends Player implements Comparable {
 
     public boolean isPerformingTrick() { return performingTrick; }
     public void setPerformingTrick(boolean performingTrick) { this.performingTrick = performingTrick; }
-    
+
     public boolean isNeedToTurn() { return needToTurn; }
     public void setNeedToTurn(boolean needToTurn) { this.needToTurn = needToTurn; }
     public void setCardTurned(boolean cardTurned) { this.cardTurned = cardTurned; }

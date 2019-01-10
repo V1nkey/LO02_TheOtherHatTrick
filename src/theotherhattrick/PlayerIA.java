@@ -14,8 +14,8 @@ public class PlayerIA extends Player {
     private PlayStrategy strategy;
 
     public PlayerIA(String name) { super(name); }
-    
-    public PlayerIA(String name, PlayStrategy ps) 
+
+    public PlayerIA(String name, PlayStrategy ps)
     {
         super(name);
         strategy = ps;
@@ -41,7 +41,7 @@ public class PlayerIA extends Player {
 
         for (Card c : getHand())
             c.setVisible(false);
-        
+
         Random random = new Random();
         int newSeventhPropIndex = random.nextInt(3);
 
@@ -55,16 +55,16 @@ public class PlayerIA extends Player {
     public void exchangeCard() { strategy.exchangeCard(); }
 
     @Override
-    public boolean doTrick(Trick t) 
+    public boolean doTrick(Trick t)
     {
         setTrickAlreadyPerformed(true);
         setChanged();
-        
+
         boolean willBeDone = strategy.doTrick(t);
         setPerformTrick(willBeDone);
         setChanged();
         notifyObservers();
-        
+
         return willBeDone;
     }
 
