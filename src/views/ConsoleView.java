@@ -91,7 +91,7 @@ public class ConsoleView implements Observer, Runnable
     }
         
     @Override
-    public void update(Observable o, Object arg) 
+    public void update(Observable o, Object arg)
     { 
         if (o instanceof Game)
         {
@@ -103,7 +103,7 @@ public class ConsoleView implements Observer, Runnable
                 printBoard();
             }
             
-            if (game.isNewTrickPicked())
+            if (!game.isInitializing() && game.isNewTrickPicked())
             {
                 System.out.println(game.getCurrentTrick());
                 System.out.println("******************");

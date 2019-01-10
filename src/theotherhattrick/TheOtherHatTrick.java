@@ -30,24 +30,12 @@ public class TheOtherHatTrick {
         for (int i = 0; i < 1; i++)
         {
             int age = (int)(Math.random()*40) + 10;
-            System.out.println(i + " " + age);
             realPlayers.add(new PlayerReal("Player " + i, age));
         }
-        int k = 0;
+
         game.initGame(realPlayers);
 
-//        GraphicView gv = new GraphicView();
         ConsoleView cv = new ConsoleView();
         MainWindow mainWindow = new MainWindow();
-
-//        do
-//        {
-//            Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());
-//            game.showBoard();
-//            game.playTurn(currentPlayer);
-//            k++;
-//        } while (!game.isEnded());
-//
-//        game.endGame();
     }
 }

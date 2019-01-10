@@ -25,12 +25,19 @@ public abstract class Player extends Observable {
     private boolean performTrickChosen;
     private boolean trickAlreadyPerformed;
 
+    private boolean cardDiscarded;
+
     public Player(String name)
     {
         this.name = name;
         performedTricks = new ArrayList();
         hand = new ArrayList();
         score = 0;
+
+        performTrick = false;
+        performTrickChosen = false;
+        trickAlreadyPerformed = false;
+        cardDiscarded = false;
     }
 
     public void updateScore() { score = countPoints(); }
@@ -107,6 +114,10 @@ public abstract class Player extends Observable {
         Prop newSevethProp = (Prop)discardCard();
 
         Game.getInstance().setSeventhProp(newSevethProp);
+        cardDiscarded = true;
+        setChanged();
+        notifyObservers();
+        cardDiscarded = false;
     }
 
     public String seeCard(Card c) { return c.getName(); }
@@ -171,4 +182,6 @@ public abstract class Player extends Observable {
 
     public boolean isTrickAlreadyPerformed() { return trickAlreadyPerformed; }
     public void setTrickAlreadyPerformed(boolean trickAlreadyPerformed) { this.trickAlreadyPerformed = trickAlreadyPerformed; }
+
+    public boolean isCardDiscarded() { return cardDiscarded; }
 }

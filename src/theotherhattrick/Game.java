@@ -30,6 +30,7 @@ public class Game extends Observable {
     private Trick currentTrick;
 
     //Flags
+    private boolean initializing;
     private boolean running;
     private boolean newTurn;
     private boolean newTrickPicked;
@@ -43,6 +44,7 @@ public class Game extends Observable {
         players = new ArrayList();
         tryOnLastTrick = 0;
 
+        initializing = true;
         running = false;
         newTurn = false;
         newTrickPicked = false;
@@ -88,6 +90,7 @@ public class Game extends Observable {
 
         deal();
         drawTrick();
+        initializing = false;
     }
 
     public void playTurn(Player p)
@@ -119,15 +122,7 @@ public class Game extends Observable {
         else if (!currentTrick.equals(new Card("The Other Hat Trick")))
         {
             if(!p.choseTrick(currentTrick))
-            {
                 drawTrick();
-                currentTrick = trickPile.peek();
-                newTrickPicked = true;
-                setChanged();
-                notifyObservers();
-                newTrickPicked = false;
-                setChanged();
-            }
         }
         else
             tryOnLastTrick++;
@@ -203,7 +198,14 @@ public class Game extends Observable {
     {
         Trick t = (Trick)trickDeck.draw();
         t.setVisible(true);
+
         trickPile.push(t);
+        currentTrick = trickPile.peek();
+
+        newTrickPicked = true;
+        setChanged();
+        notifyObservers();
+        newTrickPicked = false;
     }
 
     public void endGame()
@@ -273,6 +275,8 @@ public class Game extends Observable {
     public Player getCurrentPlayer() { return this.currentPlayer; }
 
     public Trick getCurrentTrick() { return currentTrick; }
+
+    public boolean isInitializing() { return initializing; }
 
     public boolean isRunning() { return running; }
 

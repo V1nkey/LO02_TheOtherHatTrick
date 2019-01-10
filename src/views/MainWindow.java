@@ -1,13 +1,15 @@
 package views;
 
-import theotherhattrick.Game;
-import theotherhattrick.Player;
+import theotherhattrick.*;
+import theotherhattrick.controllers.MainWindowController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements Observer, Runnable{
     private JPanel panel1;
     private JPanel bottomPanel;
     private JPanel leftPanel;
@@ -18,14 +20,18 @@ public class MainWindow extends JFrame {
     private JLabel player2Label;
     private JButton card00;
     private JButton card01;
-    private JButton card11;
     private JButton card10;
+    private JButton card11;
     private JButton card20;
     private JButton card21;
     private JButton trickBt;
     private JButton doTrickBt;
     private JLabel propLabel;
+
+    private JOptionPane dialog;
+
     private Game game;
+
     private int ownCardIndex;
 
     public MainWindow() {
@@ -37,14 +43,39 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-        trickBt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.drawTrick();
-                trickBt.setEnabled(false);
-                refreshView();
-            }
-        });
+        dialog = new JOptionPane();
+
+        game = Game.getInstance();
+
+        game.addObserver(this);
+        game.getSeventhProp().addObserver(this);
+        for (Player p : game.getPlayers())
+        {
+            for (Card c : p.getHand())
+                c.addObserver(this);
+
+            p.addObserver(this);
+        }
+
+        for (Card c : game.getTrickDeck().getCards())
+            c.addObserver(this);
+
+        for (Card c : game.getTrickPile())
+            c.addObserver(this);
+
+        MainWindowController mwc = new MainWindowController(this);
+
+        Thread t = new Thread(this);
+        t.start();
+
+//        trickBt.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                game.drawTrick();
+//                trickBt.setEnabled(false);
+//                refreshView();
+//            }
+//        });
 
         doTrickBt.addActionListener(new ActionListener() {
             @Override
@@ -121,7 +152,7 @@ public class MainWindow extends JFrame {
         });
     }
 
-    public void refreshView() {
+    private void refreshView() {
         player0Label.setText(game.getPlayers().get(0).toString());
         player1Label.setText(game.getPlayers().get(1).toString());
         player2Label.setText(game.getPlayers().get(2).toString());
@@ -138,7 +169,7 @@ public class MainWindow extends JFrame {
         propLabel.setText(game.getSeventhProp().getName());
 
         if (game.getTrickPile().peek() == null)
-            trickBt.setText("Rien");
+            trickBt.setText("Pas de trick disponible");
         else
             trickBt.setText(game.getTrickPile().peek().toString());
     }
@@ -194,4 +225,101 @@ public class MainWindow extends JFrame {
     public JPanel getPanel() {
         return this.panel1;
     }
+
+    @Override
+    public void run()
+    {
+        int k = 0;
+        do
+        {
+            refreshView();
+            Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());
+
+            game.playTurn(currentPlayer);
+            k++;
+        } while (!game.isEnded());
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if (o instanceof Game)
+        {
+            if (game.isNewTurn())
+            {
+//                refreshView();
+                dialog.showMessageDialog(this, game.getCurrentPlayer() + " à toi de jouer","A toi !", JOptionPane.INFORMATION_MESSAGE);
+                trickBt.setEnabled(true);
+            }
+
+            if (game.isNewTrickPicked())
+            {
+                trickBt.setText(game.getCurrentTrick().toString());
+                trickBt.setEnabled(false);
+            }
+        }
+
+        if (o instanceof Player)
+        {
+            if (((Player) o).isTrickAlreadyPerformed())
+            {
+                if (((Player) o).isPerformTrick())
+                    JOptionPane.showMessageDialog(this, "TA-DAH !","Bien joué !", JOptionPane.INFORMATION_MESSAGE);
+
+                else
+                    JOptionPane.showMessageDialog(this, "Trick raté!","Loupé !", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            if (((Player) o).isCardDiscarded())
+            {
+                propLabel.setText(game.getSeventhProp().toString());
+
+                switch (game.getPlayers().indexOf(o))
+                {
+                    case 0:
+                        card00.setText(((Player) o).getHand().get(0).getName());
+                        card01.setText(((Player) o).getHand().get(1).getName());
+                        break;
+
+                    case 1:
+                        card10.setText(((Player) o).getHand().get(0).getName());
+                        card11.setText(((Player) o).getHand().get(1).getName());
+                        break;
+
+                    case 2:
+                        card20.setText(((Player) o).getHand().get(0).getName());
+                        card21.setText(((Player) o).getHand().get(1).getName());
+                }
+            }
+        }
+
+        if (o instanceof PlayerReal)
+        {
+            if (((PlayerReal) o).isChosingTrick())
+                dialog.setEnabled(false);
+
+            if (((PlayerReal) o).isExchangingCard())
+
+            if (((PlayerReal) o).isPerformingTrick())
+
+            if (((PlayerReal) o).isNeedToTurn())
+
+            if (((PlayerReal) o).isDiscardingCard());
+        }
+
+        if (o instanceof Trick)
+        {
+            if (((Trick) o).isBeingPerformed() && !((Trick) o).isCurrentlyDoable())
+                JOptionPane.showMessageDialog(this, "Trick raté!","Loupé !", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public JButton getCard00() { return card00; }
+    public JButton getCard01() { return card01; }
+    public JButton getCard10() { return card10; }
+    public JButton getCard11() { return card11; }
+    public JButton getCard20() { return card20; }
+    public JButton getCard21() { return card21; }
+    public JButton getTrickBt() { return trickBt; }
+    public JButton getDoTrickBt() { return doTrickBt; }
 }
