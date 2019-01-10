@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import views.ConsoleView;
 import views.GraphicView;
+import views.MainWindow;
+
+import javax.swing.*;
 
 /**
  *
@@ -35,6 +38,8 @@ public class TheOtherHatTrick {
 
 //        GraphicView gv = new GraphicView();
         ConsoleView cv = new ConsoleView();
+        MainWindow mainWindow = new MainWindow();
+
 //        do
 //        {
 //            Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());

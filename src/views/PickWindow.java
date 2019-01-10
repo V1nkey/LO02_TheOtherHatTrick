@@ -1,4 +1,6 @@
-package theotherhattrick;
+package views;
+
+import theotherhattrick.Player;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

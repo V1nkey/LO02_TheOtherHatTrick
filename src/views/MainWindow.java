@@ -1,4 +1,7 @@
-package theotherhattrick;
+package views;
+
+import theotherhattrick.Game;
+import theotherhattrick.Player;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,8 +28,14 @@ public class MainWindow extends JFrame {
     private Game game;
     private int ownCardIndex;
 
-    public MainWindow(Game game) {
-        this.game = game;
+    public MainWindow() {
+        this.game = Game.getInstance();
+
+        setTitle("Main window");
+        setSize(700, 500);
+        setContentPane(getPanel());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
 
         trickBt.addActionListener(new ActionListener() {
             @Override
