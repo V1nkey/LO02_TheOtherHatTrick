@@ -18,6 +18,7 @@ public class Trick extends Card
     private List<List<Prop>> combination;
     
     //Flags
+    private boolean beingPerformed;
     private boolean currentlyDoable;
 
     public Trick(String name, int nbPoints, List<List<Prop>> combination) 
@@ -27,6 +28,7 @@ public class Trick extends Card
         this.combination = combination;
         
         currentlyDoable = false;
+        beingPerformed = false;
     }
 
     public Trick(String name, int nbPoints, List<List<Prop>> combination, boolean visible) 
@@ -36,13 +38,16 @@ public class Trick extends Card
         this.combination = combination;
         
         currentlyDoable = false;
+        beingPerformed = false;
     }
     
     public boolean isDoable(List<Prop> props)
     {
+        beingPerformed = true;
         currentlyDoable = (combination.get(0).contains(props.get(0)) && combination.get(1).contains(props.get(1))) || (combination.get(0).contains(props.get(1)) && combination.get(1).contains(props.get(0)));
         setChanged();
         notifyObservers();
+        beingPerformed = false;
         return currentlyDoable;
     }
     
@@ -59,4 +64,6 @@ public class Trick extends Card
     public List<List<Prop>> getCombination() { return combination; }
 
     public boolean isCurrentlyDoable() { return currentlyDoable; } 
+
+    public boolean isBeingPerformed() { return beingPerformed; }
 }

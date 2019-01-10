@@ -66,7 +66,7 @@ public class PlayerReal extends Player implements Comparable {
         setChanged();
         notifyObservers();
         
-//        while (!trickChosen);
+        while (!trickChosen);
         
         trickChosen = false;
         setChanged();

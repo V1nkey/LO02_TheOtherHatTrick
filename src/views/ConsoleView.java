@@ -147,9 +147,9 @@ public class ConsoleView implements Observer, Runnable
         
         if (o instanceof Trick)
         {
-            if (!((Trick) o).isCurrentlyDoable())
+            if (((Trick) o).isBeingPerformed() && !((Trick) o).isCurrentlyDoable())
             {
-                System.out.println("Trick raté");
+                System.out.println("Trick raté !");
                 System.out.println("******************\n");
             }
         }

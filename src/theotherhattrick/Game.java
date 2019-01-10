@@ -104,17 +104,27 @@ public class Game extends Observable {
         setChanged();
         
 //        System.out.print("Test " + p);
-        
-        if (!currentTrick.equals(new Card("The Other Hat Trick")))
+        if (currentTrick == null)
         {
-            if((currentTrick == null) || !p.choseTrick(currentTrick))
+            drawTrick();
+            currentTrick = trickPile.peek();
+            System.out.println("Test : trick null " + currentTrick);
+            newTrickPicked = true;
+            setChanged();
+            notifyObservers();
+            
+            newTrickPicked = false;
+            setChanged();
+        }
+        else if (!currentTrick.equals(new Card("The Other Hat Trick")))
+        {
+            if(!p.choseTrick(currentTrick))
             {
                 drawTrick();
                 currentTrick = trickPile.peek();
                 newTrickPicked = true;
                 setChanged();
                 notifyObservers();
-                
                 newTrickPicked = false;
                 setChanged();
             }
