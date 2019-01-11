@@ -2,90 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4352750b-2dc2-4e55-9a7b-349daa19df45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/LO02_TheOtherHatTrick.eml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/src.userlibraries" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/ThreadScanner.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/controllers/PickWindowController$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/controllers/PickWindowController$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/controllers/PickWindowController$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/controllers/PickWindowController$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/controllers/PickWindowController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/ConsoleView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/DiscardWindow$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/DiscardWindow$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/DiscardWindow$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/DiscardWindow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/GraphicView$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/GraphicView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$6.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/MainWindow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/views/PickWindow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/AbstractLayout.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/DimensionInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/GridLayoutManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/HorizontalInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/LayoutState.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/Spacer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/SupportCode.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/Util.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/test/LO02_TheOtherHatTrick/com/intellij/uiDesigner/core/VerticalInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/theotherhattrick/controllers/PickWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/CardButtonListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/DiscardWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/MainWindoww.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Parsable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PickWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayerIA.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayerIA.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayerReal.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/PlayerReal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/TheOtherHatTrick.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/TheOtherHatTrick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Trick.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/LO02_TheOtherHatTrick/theotherhattrick/Trick.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theotherhattrick/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ConsoleView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DiscardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DiscardWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/PickWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PickWindow.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -109,10 +29,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="333" selection-start-line="333" selection-end-line="333" />
+            <state relative-caret-position="3">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
               <folding>
+                <element signature="e#945#4720#0" />
                 <element signature="initializer##0;class#MainWindow#0" />
+                <element signature="initializer##0;class#MainWindow#0" expanded="true" />
                 <element signature="e#10462#10642#0" />
                 <element signature="e#10462#13231#0" />
                 <element signature="e#13237#13273#0" />
@@ -124,20 +46,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="49" column="33" lean-forward="true" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+            <state relative-caret-position="299">
+              <caret line="61" column="78" selection-start-line="61" selection-start-column="78" selection-end-line="61" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="class#2881:3274" />
+                <element signature="class#3320:3713" />
+                <element signature="class#3759:4152" />
+                <element signature="class#4198:4591" />
+                <element signature="class#4637:5030" />
+                <element signature="method#enableCurrentPlayerButtons#0;class#MainWindowController#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -145,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2775">
-              <caret line="211" selection-start-line="211" selection-end-line="211" />
+            <state relative-caret-position="-506">
+              <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
               <folding>
                 <element signature="method#deal#0;class#Game#0" />
                 <element signature="method#drawTrick#0;class#Game#0" />
@@ -161,14 +80,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/ConsoleView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="173" column="38" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
+            <state relative-caret-position="18">
+              <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
               <folding>
                 <element signature="method#ConsoleView#0;class#ConsoleView#0" />
                 <element signature="method#run#0;class#ConsoleView#0" />
                 <element signature="method#printBoard#0;class#ConsoleView#0" />
-                <element signature="method#update#0;class#ConsoleView#0" />
-                <element signature="method#exchangingCard#0;class#ConsoleView#0" />
+                <element signature="method#chosingTrick#0;class#ConsoleView#0" />
                 <element signature="method#performingTrick#0;class#ConsoleView#0" />
                 <element signature="method#turningOverCard#0;class#ConsoleView#0" />
                 <element signature="method#discardingCard#0;class#ConsoleView#0" />
@@ -178,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+            <state relative-caret-position="195">
+              <caret line="171" column="26" selection-start-line="171" selection-start-column="26" selection-end-line="171" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -222,15 +140,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/theotherhattrick/PlayerIA.java" />
-        <option value="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" />
         <option value="$PROJECT_DIR$/src/theotherhattrick/PlayStrategy.java" />
         <option value="$PROJECT_DIR$/src/theotherhattrick/Player.java" />
-        <option value="$PROJECT_DIR$/src/theotherhattrick/Game.java" />
         <option value="$PROJECT_DIR$/src/theotherhattrick/TheOtherHatTrick.java" />
         <option value="$PROJECT_DIR$/src/views/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/views/ConsoleView.java" />
-        <option value="$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/Game.java" />
         <option value="$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java" />
+        <option value="$PROJECT_DIR$/src/views/PickWindow.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java" />
+        <option value="$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java" />
       </list>
     </option>
   </component>
@@ -276,6 +195,13 @@
               <item name="LO02_TheOtherHatTrick" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LO02_TheOtherHatTrick" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LO02_TheOtherHatTrick" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="PickWindow" type="e9f4de52:FormNode" />
             </path>
           </expand>
           <select />
@@ -341,7 +267,7 @@
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14046289" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14046289" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -350,7 +276,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27850163" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27850163" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -397,34 +323,6 @@
         <state relative-caret-position="-549" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/PickWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2775">
-          <caret line="211" selection-start-line="211" selection-end-line="211" />
-          <folding>
-            <element signature="method#deal#0;class#Game#0" />
-            <element signature="method#drawTrick#0;class#Game#0" />
-            <element signature="method#endGame#0;class#Game#0" />
-            <element signature="method#showFinalRanking#0;class#Game#0" />
-            <element signature="method#showBoard#0;class#Game#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2685">
@@ -439,12 +337,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="36" column="80" lean-forward="true" selection-start-line="36" selection-start-column="80" selection-end-line="36" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/PickWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+          <folding>
+            <element signature="method#showCards#0;class#PickWindow#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="333" selection-start-line="333" selection-end-line="333" />
+        <state relative-caret-position="3">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
           <folding>
+            <element signature="e#945#4720#0" />
             <element signature="initializer##0;class#MainWindow#0" />
+            <element signature="initializer##0;class#MainWindow#0" expanded="true" />
             <element signature="e#10462#10642#0" />
             <element signature="e#10462#13231#0" />
             <element signature="e#13237#13273#0" />
@@ -454,14 +371,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/ConsoleView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="173" column="38" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
+        <state relative-caret-position="18">
+          <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
           <folding>
             <element signature="method#ConsoleView#0;class#ConsoleView#0" />
             <element signature="method#run#0;class#ConsoleView#0" />
             <element signature="method#printBoard#0;class#ConsoleView#0" />
-            <element signature="method#update#0;class#ConsoleView#0" />
-            <element signature="method#exchangingCard#0;class#ConsoleView#0" />
+            <element signature="method#chosingTrick#0;class#ConsoleView#0" />
             <element signature="method#performingTrick#0;class#ConsoleView#0" />
             <element signature="method#turningOverCard#0;class#ConsoleView#0" />
             <element signature="method#discardingCard#0;class#ConsoleView#0" />
@@ -470,20 +386,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java">
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="49" column="33" lean-forward="true" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+        <state relative-caret-position="-506">
+          <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#deal#0;class#Game#0" />
+            <element signature="method#drawTrick#0;class#Game#0" />
+            <element signature="method#endGame#0;class#Game#0" />
+            <element signature="method#showFinalRanking#0;class#Game#0" />
+            <element signature="method#showBoard#0;class#Game#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/ThreadScanner.java">
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/controllers/MainWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
+        <state relative-caret-position="299">
+          <caret line="61" column="78" selection-start-line="61" selection-start-column="78" selection-end-line="61" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#2881:3274" />
+            <element signature="class#3320:3713" />
+            <element signature="class#3759:4152" />
+            <element signature="class#4198:4591" />
+            <element signature="class#4637:5030" />
+            <element signature="method#enableCurrentPlayerButtons#0;class#MainWindowController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/theotherhattrick/PlayerReal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="171" column="26" selection-start-line="171" selection-start-column="26" selection-end-line="171" selection-end-column="26" />
         </state>
       </provider>
     </entry>

@@ -76,7 +76,7 @@ public class Game extends Observable {
         List<Object> objCards;
         CardFactory cf = CardFactory.getInstance();
 //        objCards = cf.parse(cardsFile.getAbsolutePath());
-        objCards = cf.parse("../cards.csv");
+        objCards = cf.parse("./cards.csv");
         createDecks(objCards);
 
         trickDeck.shuffleButOne("The Other Hat Trick");

@@ -24,12 +24,14 @@ public class PickWindow extends JFrame {
     public PickWindow() {
 
         this.setTitle("Pick window");
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setSize(600, 200);
         this.setContentPane(this.getPanel());
         this.setVisible(true);
 
         new PickWindowController(this, card00, card01, card10, card11);
+
+        showCards();
     }
 
     public void showCards() {

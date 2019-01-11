@@ -5,6 +5,7 @@ import theotherhattrick.Player;
 import theotherhattrick.PlayerReal;
 import theotherhattrick.ThreadScanner;
 import views.MainWindow;
+import views.PickWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -48,7 +49,17 @@ public class MainWindowController
             public void actionPerformed(ActionEvent e)
             {
                 game.drawTrick();
-                tScanner.setWaitingResponse();
+
+                tScanner.setResult("N");
+                tScanner.setWaitingResponse(false);
+
+                doTrickBt.setEnabled(false);
+                enableCurrentPlayerButtons();
+
+                ((PlayerReal)game.getCurrentPlayer()).setTrickChoice(tScanner.getResult().equals("o"));
+                ((PlayerReal)game.getCurrentPlayer()).setTrickChosen(true);
+
+                ((PlayerReal)game.getCurrentPlayer()).setExchangingCard(true);
             }
         });
 
@@ -57,29 +68,16 @@ public class MainWindowController
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                switch (game.getPlayers().indexOf(game.getCurrentPlayer()))
-                {
-                    case 0:
-                        card10.setEnabled(false);
-                        card11.setEnabled(false);
-                        card20.setEnabled(false);
-                        card21.setEnabled(false);
-                        break;
+                tScanner.setResult("O");
+                tScanner.setWaitingResponse(false);
 
-                    case 1:
-                        card00.setEnabled(false);
-                        card01.setEnabled(false);
-                        card20.setEnabled(false);
-                        card21.setEnabled(false);
-                        break;
+                doTrickBt.setEnabled(false);
+                enableCurrentPlayerButtons();
 
-                    case 2:
-                        card00.setEnabled(false);
-                        card01.setEnabled(false);
-                        card10.setEnabled(false);
-                        card11.setEnabled(false);
-                        break;
-                }
+                ((PlayerReal)game.getCurrentPlayer()).setTrickChoice(tScanner.getResult().equals("o"));
+                ((PlayerReal)game.getCurrentPlayer()).setTrickChosen(true);
+
+                ((PlayerReal)game.getCurrentPlayer()).setExchangingCard(true);
             }
         });
 
@@ -93,6 +91,8 @@ public class MainWindowController
                 {
                     ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(0);
+
+                    new PickWindow();
                 }
             }
         });
@@ -166,5 +166,41 @@ public class MainWindowController
                 }
             }
         });
+    }
+
+    private void enableCurrentPlayerButtons()
+    {
+        switch (game.getPlayers().indexOf(game.getCurrentPlayer()))
+        {
+            case 0:
+                card00.setEnabled(true);
+                card01.setEnabled(true);
+
+                card10.setEnabled(false);
+                card11.setEnabled(false);
+                card20.setEnabled(false);
+                card21.setEnabled(false);
+                break;
+
+            case 1:
+                card10.setEnabled(true);
+                card11.setEnabled(true);
+
+                card00.setEnabled(false);
+                card01.setEnabled(false);
+                card20.setEnabled(false);
+                card21.setEnabled(false);
+                break;
+
+            case 2:
+                card20.setEnabled(true);
+                card21.setEnabled(true);
+
+                card00.setEnabled(false);
+                card01.setEnabled(false);
+                card10.setEnabled(false);
+                card11.setEnabled(false);
+                break;
+        }
     }
 }

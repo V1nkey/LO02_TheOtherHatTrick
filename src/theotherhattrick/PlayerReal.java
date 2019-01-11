@@ -165,7 +165,12 @@ public class PlayerReal extends Player implements Comparable {
     public void setTrickChoice(boolean choiceTrick) { this.trickChoice = choiceTrick; }
 
     public boolean isExchangingCard() { return exchangingCard; }
-    public void setExchangingCard(boolean exchangingCard) { this.exchangingCard = exchangingCard; }
+    public void setExchangingCard(boolean exchangingCard)
+    {
+        this.exchangingCard = exchangingCard;
+        setChanged();
+        notifyObservers();
+    }
 
     public boolean isOwnCardChosen() { return ownCardChosen; }
     public void setOwnCardChosen(boolean ownCardChosen) { this.ownCardChosen = ownCardChosen; }

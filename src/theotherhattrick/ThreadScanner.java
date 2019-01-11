@@ -34,11 +34,11 @@ public class ThreadScanner implements Runnable {
     public String getResult() {
         return this.result;
     }
+    public void setResult(String result) { this.result = result.toLowerCase(); }
 
     public boolean getWaitingResponse() {
         return this.waitingResponse;
     }
-
     public void setWaitingResponse(boolean waitingResponse) { this.waitingResponse = waitingResponse; }
 
     public void start() {
