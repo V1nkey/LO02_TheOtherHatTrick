@@ -35,6 +35,8 @@ public class TheOtherHatTrick {
 
         game.initGame(realPlayers);
 
+//        GraphicView gv = new GraphicView();
+        ThreadScanner tScanner = ThreadScanner.getInstance();
         ConsoleView cv = new ConsoleView();
         MainWindow mainWindow = new MainWindow();
     }

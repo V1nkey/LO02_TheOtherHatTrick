@@ -3,6 +3,7 @@ package theotherhattrick.controllers;
 import theotherhattrick.Game;
 import theotherhattrick.Player;
 import theotherhattrick.PlayerReal;
+import theotherhattrick.ThreadScanner;
 import views.MainWindow;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class MainWindowController
     private Game game;
 
     private MainWindow mainWindow;
+    private ThreadScanner tScanner;
 
     private JButton card00;
     private JButton card01;
@@ -29,6 +31,7 @@ public class MainWindowController
         game = Game.getInstance();
 
         this.mainWindow = mainWindow;
+        this.tScanner = ThreadScanner.getInstance();
 
         this.card00 = mainWindow.getCard00();
         this.card01 = mainWindow.getCard01();
@@ -45,6 +48,7 @@ public class MainWindowController
             public void actionPerformed(ActionEvent e)
             {
                 game.drawTrick();
+                tScanner.setWaitingResponse();
             }
         });
 
