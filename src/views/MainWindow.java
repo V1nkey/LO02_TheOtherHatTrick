@@ -198,13 +198,6 @@ public class MainWindow extends JFrame implements Observer, Runnable{
         if (trickReussi) {
             DiscardWindow discardWindow = new DiscardWindow(this);
 
-            JFrame frame = new JFrame("DiscardWindow");
-            discardWindow.addFrame(frame);
-            frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            frame.setSize(600, 100);
-            frame.setContentPane(discardWindow.getPanel());
-            frame.setVisible(true);
-
             game.getCurrentPlayer().getHand().add(game.getSeventhProp());
             discardWindow.showCards(game.getCurrentPlayer());
         }

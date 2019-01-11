@@ -12,19 +12,19 @@ import java.util.List;
 
 public class PickWindowController {
     private Game game;
-    private JFrame frame;
+    private PickWindow frame;
     private JButton card00;
     private JButton card01;
     private JButton card10;
     private JButton card11;
 
-    public PickWindowController(JFrame frame, JButton card00, JButton card01, JButton card10, JButton card11) {
+    public PickWindowController(PickWindow frame) {
         this.game = Game.getInstance();
         this.frame = frame;
-        this.card00 = card00;
-        this.card01 = card01;
-        this.card10 = card10;
-        this.card11 = card11;
+        this.card00 = frame.getCard00();
+        this.card01 = frame.getCard01();
+        this.card10 = frame.getCard10();
+        this.card11 = frame.getCard11();
 
         card00.addActionListener(new ActionListener() {
             @Override
