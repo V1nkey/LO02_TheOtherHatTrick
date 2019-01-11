@@ -1,44 +1,28 @@
 package views;
 
 import theotherhattrick.Player;
+import theotherhattrick.controllers.DiscardWindowController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DiscardWindow {
-    private JFrame frame;
+public class DiscardWindow extends JFrame {
     private JPanel panel1;
     private JButton card0;
     private JButton card1;
     private JButton card2;
-    private MainWindow mainWindow;
 
-    public DiscardWindow(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
+    public DiscardWindow() {
 
-        card0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.putSeventhProp(0);
-                frame.dispose();
-            }
-        });
-        card1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.putSeventhProp(1);
-                frame.dispose();
-            }
-        });
-        card2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainWindow.putSeventhProp(2);
-                frame.dispose();
-            }
-        });
+        this.setTitle("Discard window");
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setSize(600, 100);
+        this.setContentPane(this.getPanel());
+        this.setVisible(true);
+
+        new DiscardWindowController(this);
     }
 
     public void showCards(Player currentPlayer) {
@@ -47,8 +31,16 @@ public class DiscardWindow {
         card2.setText(currentPlayer.getHand().get(2).getName());
     }
 
-    public void addFrame(JFrame frame) {
-        this.frame = frame;
+    public JButton getCard0() {
+        return this.card0;
+    }
+
+    public JButton getCard1() {
+        return this.card1;
+    }
+
+    public JButton getCard2() {
+        return this.card2;
     }
 
     public JPanel getPanel() {
