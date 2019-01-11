@@ -59,7 +59,10 @@ public class MainWindowController
                 ((PlayerReal)game.getCurrentPlayer()).setTrickChoice(tScanner.getResult().equals("o"));
                 ((PlayerReal)game.getCurrentPlayer()).setTrickChosen(true);
 
+                ((PlayerReal)game.getCurrentPlayer()).exchangeCard();
+
                 ((PlayerReal)game.getCurrentPlayer()).setExchangingCard(true);
+                //((PlayerReal)game.getCurrentPlayer()).exchangeCard();
             }
         });
 

@@ -201,7 +201,6 @@ public class ConsoleView implements Observer, Runnable
                     System.out.println("Exception");
                 }
             }
-
             cardChoice = tScanner.getResult();
             if (!cardChoice.equals("0") && !cardChoice.equals("1"))
                 System.out.println("Choisis une de tes cartes à échanger : 0 ou 1");

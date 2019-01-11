@@ -64,23 +64,23 @@ public class Game extends Observable {
 
     public void initGame(List<PlayerReal> physicalPlayers)
     {
-//        JFileChooser fileChooser = new JFileChooser(new File(".."));
-//        fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
-//        File cardsFile = null;
-//        
-//        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-//            cardsFile = fileChooser.getSelectedFile();
-//        else 
-//            return;
-//        if (running)
-//            return;
+        JFileChooser fileChooser = new JFileChooser(new File(".."));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Card files", "csv"));
+        File cardsFile = null;
+
+        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            cardsFile = fileChooser.getSelectedFile();
+        else
+            return;
+        if (running)
+            return;
 //        
 //        running = true;
 
         List<Object> objCards;
         CardFactory cf = CardFactory.getInstance();
-//        objCards = cf.parse(cardsFile.getAbsolutePath());
-        objCards = cf.parse("./cards.csv");
+        objCards = cf.parse(cardsFile.getAbsolutePath());
+//        objCards = cf.parse("../cards.csv");
         createDecks(objCards);
 
         trickDeck.shuffleButOne("The Other Hat Trick");
