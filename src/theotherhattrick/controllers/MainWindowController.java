@@ -1,9 +1,6 @@
 package theotherhattrick.controllers;
 
-import theotherhattrick.Game;
-import theotherhattrick.Player;
-import theotherhattrick.PlayerReal;
-import theotherhattrick.ThreadScanner;
+import theotherhattrick.*;
 import views.MainWindow;
 import views.PickWindow;
 
@@ -26,6 +23,7 @@ public class MainWindowController
     private JButton card21;
     private JButton trickBt;
     private JButton doTrickBt;
+    private JButton switchToBotBt;
 
     public MainWindowController(MainWindow mainWindow)
     {
@@ -42,6 +40,7 @@ public class MainWindowController
         this.card21 = mainWindow.getCard21();
         this.trickBt = mainWindow.getTrickBt();
         this.doTrickBt = mainWindow.getDoTrickBt();
+        this.switchToBotBt = mainWindow.getSwitchToBotBt();
 
         this.trickBt.addActionListener(new ActionListener()
         {
@@ -167,6 +166,15 @@ public class MainWindowController
                     ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(1);
                 }
+            }
+        });
+        this.switchToBotBt.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                PlayerReal pr = (PlayerReal)Game.getInstance().getCurrentPlayer();
+                pr.setStrategy(new Strategy2());
             }
         });
     }

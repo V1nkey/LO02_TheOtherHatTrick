@@ -36,6 +36,8 @@ public class PlayerReal extends Player implements Comparable {
     private boolean cardDiscarded;
     private int cardToBeDiscarded;
 
+    private PlayStrategy strategy;
+
     //ENLEVER LES BOUCLES ET LES VARIABLES SI CA MARCHE AVEC LA VUE GRAPHIQUE
 
     public PlayerReal(String name)
@@ -51,6 +53,7 @@ public class PlayerReal extends Player implements Comparable {
         needToTurn = false;
         cardTurned = false;
         discardingCard = false;
+        strategy = null;
     }
 
     public PlayerReal(String name, int age)
@@ -62,28 +65,36 @@ public class PlayerReal extends Player implements Comparable {
     @Override
     public boolean choseTrick(Trick t)
     {
-        chosingTrick = true;
-        setChanged();
-        notifyObservers();
+        if (this.strategy == null) {
+            chosingTrick = true;
+            setChanged();
+            notifyObservers();
 
-        while (!trickChosen);
+            while (!trickChosen) ;
 
-        trickChosen = false;
-        setChanged();
-        return trickChoice;
+            trickChosen = false;
+            setChanged();
+            return trickChoice;
+        } else {
+            return this.strategy.choseTrick(t);
+        }
     }
 
     @Override
     public void exchangeCard()
     {
-        exchangingCard = true;
-        setChanged();
-        notifyObservers();
+        if (this.strategy == null) {
+            exchangingCard = true;
+            setChanged();
+            notifyObservers();
 
-        selectCardToGive();
-        selectCardToGet();
-        super.exchangeCard(ownCardIndex, playerToExchangeWith, otherCardIndex);
-        setChanged();
+            selectCardToGive();
+            selectCardToGet();
+            super.exchangeCard(ownCardIndex, playerToExchangeWith, otherCardIndex);
+            setChanged();
+        } else {
+            this.strategy.exchangeCard();
+        }
     }
 
     private void selectCardToGive()
@@ -101,51 +112,66 @@ public class PlayerReal extends Player implements Comparable {
     @Override
     public boolean doTrick(Trick t)
     {
-        setPerformingTrick(true);
-        setChanged();
-        notifyObservers();
+        if (strategy == null) {
+            setPerformingTrick(true);
+            setChanged();
+            notifyObservers();
 
-        if (!isTrickAlreadyPerformed())
-        {
-            while(!isPerformTrickChosen());
-            setPerformTrickChosen(false);
-        }
+            if (!isTrickAlreadyPerformed()) {
+                while (!isPerformTrickChosen()) ;
+                setPerformTrickChosen(false);
+            }
 
-        setTrickAlreadyPerformed(true);
-        setChanged();
+            setTrickAlreadyPerformed(true);
+            setChanged();
 
-        boolean willBeDone = isPerformTrick();
-        setPerformTrick(willBeDone);
+            boolean willBeDone = isPerformTrick();
+            setPerformTrick(willBeDone);
 //        setChanged();
 
-        return willBeDone;
+            return willBeDone;
+        }
+        else {
+            setTrickAlreadyPerformed(true);
+            setChanged();
+
+            boolean willBeDone = this.strategy.doTrick(t);
+            setPerformTrick(willBeDone);
+            setChanged();
+            notifyObservers();
+
+            return willBeDone;
+        }
     }
 
     @Override
     public void turnOverCard()
     {
-        if (!super.getHand().get(0).isVisible() && !super.getHand().get(1).isVisible())
-        {
-            needToTurn = true;
-            setChanged();
-            notifyObservers();
+        if (this.strategy == null) {
+            if (!super.getHand().get(0).isVisible() && !super.getHand().get(1).isVisible()) {
+                needToTurn = true;
+                setChanged();
+                notifyObservers();
 
 
-
-            super.getHand().get(cardToBeTurned).setVisible(true);
+                super.getHand().get(cardToBeTurned).setVisible(true);
+            } else
+                super.turnOverCardNoChoice();
         }
-        else
-            super.turnOverCardNoChoice();
     }
 
     @Override
     public Card discardCard()
     {
-        discardingCard = true;
-        setChanged();
-        notifyObservers();
+        if (this.strategy == null) {
+            discardingCard = true;
+            setChanged();
+            notifyObservers();
 
-        return super.getHand().remove(cardToBeDiscarded);
+            return super.getHand().remove(cardToBeDiscarded);
+        } else {
+            return this.strategy.discardCard();
+        }
     }
 
     @Override
@@ -156,6 +182,14 @@ public class PlayerReal extends Player implements Comparable {
     }
 
     public int getAge() { return age; }
+
+    public void setStrategy(PlayStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public PlayStrategy getStrategy() {
+        return this.strategy;
+    }
 
     public boolean isChosingTrick() { return chosingTrick; }
     public void setChosingTrick(boolean chosingTrick) { this.chosingTrick = chosingTrick; }
@@ -194,4 +228,10 @@ public class PlayerReal extends Player implements Comparable {
     public void setDiscardingCard(boolean discardingCard) { this.discardingCard = discardingCard; }
     public void setCardToBeDiscarded(int cardToBeDiscarded) { this.cardToBeDiscarded = cardToBeDiscarded; }
     public void setCardDiscarded(boolean cardDiscarded) { this.cardDiscarded = cardDiscarded; }
+
+    public boolean hasStrategy() {
+        if (this.strategy == null)
+            return false;
+        return true;
+    }
 }

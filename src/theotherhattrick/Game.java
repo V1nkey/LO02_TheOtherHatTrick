@@ -106,7 +106,6 @@ public class Game extends Observable {
         newTurn = false;
         setChanged();
 
-//        System.out.print("Test " + p);
         if (currentTrick == null)
         {
             drawTrick();

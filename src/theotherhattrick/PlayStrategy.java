@@ -20,6 +20,4 @@ public interface PlayStrategy
     public void exchangeCard();
 
     public Card discardCard();
-
-
 }

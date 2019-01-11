@@ -184,4 +184,5 @@ public abstract class Player extends Observable {
     public void setTrickAlreadyPerformed(boolean trickAlreadyPerformed) { this.trickAlreadyPerformed = trickAlreadyPerformed; }
 
     public boolean isCardDiscarded() { return cardDiscarded; }
+    public abstract boolean hasStrategy();
 }

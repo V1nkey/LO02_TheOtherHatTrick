@@ -70,4 +70,10 @@ public class PlayerIA extends Player {
 
     @Override
     public Card discardCard() { return strategy.discardCard(); }
+
+    public boolean hasStrategy() {
+        if (this.strategy == null)
+            return false;
+        return true;
+    }
 }

@@ -8,7 +8,6 @@ package theotherhattrick;
 import java.util.ArrayList;
 import java.util.List;
 import views.ConsoleView;
-import views.GraphicView;
 import views.MainWindow;
 
 import javax.swing.*;
