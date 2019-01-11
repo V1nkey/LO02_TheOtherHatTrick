@@ -1,5 +1,6 @@
 package views;
 
+import theotherhattrick.Game;
 import theotherhattrick.Player;
 import theotherhattrick.controllers.DiscardWindowController;
 
@@ -18,17 +19,21 @@ public class DiscardWindow extends JFrame {
 
         this.setTitle("Discard window");
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        this.setSize(600, 100);
+        this.setSize(600, 200);
         this.setContentPane(this.getPanel());
         this.setVisible(true);
 
         new DiscardWindowController(this);
     }
 
-    public void showCards(Player currentPlayer) {
+    public void showCards() {
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
         card0.setText(currentPlayer.getHand().get(0).getName());
+        MainWindow.putImageProp(card0);
         card1.setText(currentPlayer.getHand().get(1).getName());
+        MainWindow.putImageProp(card1);
         card2.setText(currentPlayer.getHand().get(2).getName());
+        MainWindow.putImageProp(card2);
     }
 
     public JButton getCard0() {

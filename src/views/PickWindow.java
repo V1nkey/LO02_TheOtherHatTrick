@@ -25,7 +25,7 @@ public class PickWindow extends JFrame {
 
         this.setTitle("Pick window");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setSize(600, 200);
+        this.setSize(600, 250);
         this.setContentPane(this.getPanel());
         this.setVisible(true);
 
@@ -45,8 +45,10 @@ public class PickWindow extends JFrame {
         int i = 0;
         for (Player player : players) {
             buttons.get(i).setText(player.getHand().get(0).toString());
+            MainWindow.putImageProp(buttons.get(i));
             i++;
             buttons.get(i).setText(player.getHand().get(1).toString());
+            MainWindow.putImageProp(buttons.get(i));
             i++;
         }
 
