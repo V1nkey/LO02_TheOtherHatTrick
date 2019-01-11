@@ -35,6 +35,8 @@ public class Game extends Observable {
     private boolean newTurn;
     private boolean newTrickPicked;
 
+    private boolean exchangeDone;
+
     private Game()
     {
         seventhProp = null;
@@ -48,6 +50,8 @@ public class Game extends Observable {
         running = false;
         newTurn = false;
         newTrickPicked = false;
+
+        exchangeDone = false;
     }
 
     public static Game getInstance()
@@ -95,10 +99,11 @@ public class Game extends Observable {
 
     public void playTurn(Player p)
     {
-        this.currentPlayer = p;
-        p.setTrickAlreadyPerformed(false);
+        resetFlags();
+        p.resetFlags();
 
-        newTurn = true;
+        this.currentPlayer = p;
+
         currentTrick = trickPile.empty() ? null : trickPile.peek();
         setChanged();
         notifyObservers();
@@ -121,13 +126,30 @@ public class Game extends Observable {
         }
         else if (!currentTrick.equals(new Card("The Other Hat Trick")))
         {
-            if(!p.choseTrick(currentTrick))
+            //Checker si le trick a été clické
+            if(!p.choseTrick(currentTrick) && !newTrickPicked)
                 drawTrick();
         }
         else
             tryOnLastTrick++;
 
+        if (p instanceof PlayerReal)
+        {
+            while (!((PlayerReal) p).isTrickChosen())
+            {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         p.exchangeCard();
+//        exchangeDone = true;
+//        setChanged();
+//        notifyObservers();
+//        exchangeDone = false;
 
         if(currentTrick.isDoable(p.getHand()))
         {
@@ -262,6 +284,13 @@ public class Game extends Observable {
         return otherPlayers;
     }
 
+    private void resetFlags()
+    {
+        newTurn = true;
+        newTrickPicked = false;
+        exchangeDone = false;
+    }
+
     public Prop getSeventhProp() { return seventhProp; }
 
     public void setSeventhProp(Prop p) { seventhProp = p; }
@@ -283,4 +312,7 @@ public class Game extends Observable {
     public boolean isNewTurn() { return newTurn; }
 
     public boolean isNewTrickPicked() { return newTrickPicked; }
+    public void setNewTrickPicked(boolean newTrickPicked) { this.newTrickPicked = newTrickPicked; }
+
+    public boolean isExchangeDone() { return exchangeDone; }
 }

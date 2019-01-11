@@ -66,9 +66,8 @@ public class PlayerReal extends Player implements Comparable {
         setChanged();
         notifyObservers();
 
-        while (!trickChosen);
+        chosingTrick = false;
 
-        trickChosen = false;
         setChanged();
         return trickChoice;
     }
@@ -76,47 +75,31 @@ public class PlayerReal extends Player implements Comparable {
     @Override
     public void exchangeCard()
     {
-        exchangingCard = true;
         setChanged();
         notifyObservers();
 
-        selectCardToGive();
-        selectCardToGet();
+        System.out.println("Choix de carte OK !");
+        setChanged();
+        notifyObservers();
+
         super.exchangeCard(ownCardIndex, playerToExchangeWith, otherCardIndex);
         setChanged();
-    }
-
-    private void selectCardToGive()
-    {
-        while (!ownCardChosen);
-        ownCardChosen = false;
-    }
-
-    private void selectCardToGet()
-    {
-        while (!otherCardChosen);
-        otherCardChosen = false;
     }
 
     @Override
     public boolean doTrick(Trick t)
     {
-        setPerformingTrick(true);
+        performingTrick = true;
         setChanged();
         notifyObservers();
 
-        if (!isTrickAlreadyPerformed())
-        {
-            while(!isPerformTrickChosen());
-            setPerformTrickChosen(false);
-        }
-
         setTrickAlreadyPerformed(true);
-        setChanged();
-
         boolean willBeDone = isPerformTrick();
+        setPerformingTrick(false);
         setPerformTrick(willBeDone);
-//        setChanged();
+
+        setChanged();
+        notifyObservers();
 
         return willBeDone;
     }
@@ -141,11 +124,26 @@ public class PlayerReal extends Player implements Comparable {
     @Override
     public Card discardCard()
     {
+        System.out.println("Test1");
         discardingCard = true;
         setChanged();
         notifyObservers();
 
         return super.getHand().remove(cardToBeDiscarded);
+    }
+
+    public void resetFlags()
+    {
+        super.resetFlags();
+
+        trickChosen = false;
+        trickChoice = false;
+        exchangingCard = false;
+        ownCardChosen = false;
+        otherCardChosen = false;
+        needToTurn = false;
+        cardTurned = false;
+        discardingCard = false;
     }
 
     @Override
@@ -165,12 +163,7 @@ public class PlayerReal extends Player implements Comparable {
     public void setTrickChoice(boolean choiceTrick) { this.trickChoice = choiceTrick; }
 
     public boolean isExchangingCard() { return exchangingCard; }
-    public void setExchangingCard(boolean exchangingCard)
-    {
-        this.exchangingCard = exchangingCard;
-        setChanged();
-        notifyObservers();
-    }
+    public void setExchangingCard(boolean exchangingCard) { this.exchangingCard = exchangingCard; }
 
     public boolean isOwnCardChosen() { return ownCardChosen; }
     public void setOwnCardChosen(boolean ownCardChosen) { this.ownCardChosen = ownCardChosen; }

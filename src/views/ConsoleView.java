@@ -20,10 +20,12 @@ import theotherhattrick.*;
 public class ConsoleView implements Observer, Runnable
 {
     private Game game;
+    private ThreadScanner tScanner;
 
     public ConsoleView()
     {
         game = Game.getInstance();
+        tScanner = ThreadScanner.getInstance();
 
         game.addObserver(this);
         game.getSeventhProp().addObserver(this);
@@ -128,16 +130,22 @@ public class ConsoleView implements Observer, Runnable
             if (((PlayerReal) o).isChosingTrick())
                 chosingTrick((PlayerReal) o);
 
-            if (((PlayerReal) o).isExchangingCard())
-                exchangingCard((PlayerReal) o);
+            else if (((PlayerReal) o).isExchangingCard())
+            {
+                if (!((PlayerReal) o).isOwnCardChosen())
+                    selectingOwnCard((PlayerReal) o);
 
-            if (((PlayerReal) o).isPerformingTrick())
+                else if (!((PlayerReal) o).isOtherCardChosen())
+                    selectingOtherCard((PlayerReal) o);
+            }
+
+            else if (((PlayerReal) o).isPerformingTrick())
                 performingTrick((PlayerReal) o);
 
-            if (((PlayerReal) o).isNeedToTurn())
+            else if (((PlayerReal) o).isNeedToTurn())
                 turningOverCard((PlayerReal) o);
 
-            if (((PlayerReal) o).isDiscardingCard())
+            else if (((PlayerReal) o).isDiscardingCard())
                 discardingCard((PlayerReal) o);
         }
 
@@ -153,20 +161,14 @@ public class ConsoleView implements Observer, Runnable
 
     private void chosingTrick(PlayerReal pr)
     {
-        pr.setChosingTrick(false);
         pr.showHand(true);
 
         //Scanner sc = new Scanner(System.in);
-        ThreadScanner tScanner = ThreadScanner.getInstance();
         String choice = "";
         do
         {
             System.out.println("Choisir ce trick ? O / N");
-            tScanner.start();
-            //choice = sc.nextLine().toLowerCase();
-
-            //if (!choice.equals("o") && !choice.equals("n"))
-            //    System.out.println("Merci d'entrer O ou N");
+            tScanner.setWaitingResponse(true);
 
             while (tScanner.getWaitingResponse()) {
                 try {
@@ -183,18 +185,15 @@ public class ConsoleView implements Observer, Runnable
         pr.setTrickChosen(true);
     }
 
-    private void exchangingCard(PlayerReal pr)
+    private void selectingOwnCard(PlayerReal pr)
     {
-        pr.setExchangingCard(false);
-        //Scanner sc = new Scanner(System.in);
-        ThreadScanner tScanner = ThreadScanner.getInstance();
         String cardChoice = "";
 
         //Choix de sa propre carte
         System.out.println("Choisis une de tes cartes à échanger : 0 ou 1");
         do
         {
-            tScanner.start();
+            tScanner.setWaitingResponse(true);
             while (tScanner.getWaitingResponse()) {
                 try {
                     Thread.sleep(50);
@@ -210,10 +209,13 @@ public class ConsoleView implements Observer, Runnable
 
         pr.setOwnCardIndex(Integer.parseInt(cardChoice));
         pr.setOwnCardChosen(true);
+    }
 
-        //Choix de la 2ème carte
+    private void selectingOtherCard(PlayerReal pr)
+    {
         List<Player> otherPlayers = game.getOtherPlayers(pr);
         List<Card> gettableCards = new ArrayList();
+        String cardChoice;
 
         int k = 0;
         System.out.println("Choisis une carte à récupérer : ");
@@ -228,8 +230,7 @@ public class ConsoleView implements Observer, Runnable
         boolean isEntryValid = false;
         do
         {
-            //cardChoice = sc.nextLine();
-            tScanner.start();
+            tScanner.setWaitingResponse(true);
             while (tScanner.getWaitingResponse()) {
                 try {
                     Thread.sleep(50);
@@ -259,16 +260,12 @@ public class ConsoleView implements Observer, Runnable
 
     private void performingTrick(PlayerReal pr)
     {
-        pr.setPerformingTrick(false);
-
-        //Scanner sc = new Scanner(System.in);
-        ThreadScanner tScanner = ThreadScanner.getInstance();
         String choice = "";
         do
         {
             System.out.println("Réaliser ce trick ? O / N");
-            //choice = sc.nextLine().toLowerCase();
-            tScanner.start();
+            tScanner.setWaitingResponse(true);
+
             while (tScanner.getWaitingResponse()) {
                 try {
                     Thread.sleep(50);
@@ -293,12 +290,12 @@ public class ConsoleView implements Observer, Runnable
 
         System.out.println("Choisis une carte à retourner");
         pr.showHand(true);
-        //Scanner sc = new Scanner(System.in);
-        ThreadScanner tScanner = ThreadScanner.getInstance();
+
         String choice;
         do
         {
-            tScanner.start();
+            tScanner.setWaitingResponse(true);
+
             while (tScanner.getWaitingResponse()) {
                 try {
                     Thread.sleep(50);
@@ -322,12 +319,21 @@ public class ConsoleView implements Observer, Runnable
 
         System.out.println("Choisissez une carte à remettre au milieu");
         pr.showHand(true);
-        Scanner sc = new Scanner(System.in);
         String choice;
 
         do
         {
-            choice = sc.nextLine();
+            tScanner.setWaitingResponse(true);
+
+            while (tScanner.getWaitingResponse()) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    System.out.println("Exception");
+                }
+            }
+            choice = tScanner.getResult();
+
             if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
                 System.out.println("Choisissez une carte à remettre au milieu");
         } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));

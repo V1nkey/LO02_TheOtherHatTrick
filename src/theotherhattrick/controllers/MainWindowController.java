@@ -49,12 +49,12 @@ public class MainWindowController
             public void actionPerformed(ActionEvent e)
             {
                 game.drawTrick();
+                game.setNewTrickPicked(true);
+
+                doTrickBt.setEnabled(false);
 
                 tScanner.setResult("N");
                 tScanner.setWaitingResponse(false);
-
-                doTrickBt.setEnabled(false);
-                enableCurrentPlayerButtons();
 
                 ((PlayerReal)game.getCurrentPlayer()).setTrickChoice(tScanner.getResult().equals("o"));
                 ((PlayerReal)game.getCurrentPlayer()).setTrickChosen(true);
@@ -71,9 +71,6 @@ public class MainWindowController
                 tScanner.setResult("O");
                 tScanner.setWaitingResponse(false);
 
-                doTrickBt.setEnabled(false);
-                enableCurrentPlayerButtons();
-
                 ((PlayerReal)game.getCurrentPlayer()).setTrickChoice(tScanner.getResult().equals("o"));
                 ((PlayerReal)game.getCurrentPlayer()).setTrickChosen(true);
 
@@ -89,8 +86,11 @@ public class MainWindowController
                 Player p = game.getPlayers().get(0);
                 if (p instanceof PlayerReal)
                 {
-                    ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(0);
+                    ((PlayerReal) p).setOwnCardChosen(true);
+
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("0");
 
                     new PickWindow();
                 }
@@ -105,8 +105,13 @@ public class MainWindowController
                 Player p = game.getPlayers().get(0);
                 if (p instanceof PlayerReal)
                 {
+                    ((PlayerReal) p).setOwnCardIndex(0);
                     ((PlayerReal) p).setOwnCardChosen(true);
-                    ((PlayerReal) p).setOwnCardIndex(1);
+
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("1");
+
+                    new PickWindow();
                 }
             }
         });
@@ -119,8 +124,13 @@ public class MainWindowController
                 Player p = game.getPlayers().get(1);
                 if (p instanceof PlayerReal)
                 {
-                    ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(0);
+                    ((PlayerReal) p).setOwnCardChosen(true);
+
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("0");
+
+                    new PickWindow();
                 }
             }
         });
@@ -133,8 +143,13 @@ public class MainWindowController
                 Player p = game.getPlayers().get(1);
                 if (p instanceof PlayerReal)
                 {
-                    ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(1);
+                    ((PlayerReal) p).setOwnCardChosen(true);
+
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("1");
+
+                    new PickWindow();
                 }
             }
         });
@@ -147,8 +162,13 @@ public class MainWindowController
                 Player p = game.getPlayers().get(2);
                 if (p instanceof PlayerReal)
                 {
-                    ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(0);
+                    ((PlayerReal) p).setOwnCardChosen(true);
+
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("0");
+
+                    new PickWindow();
                 }
             }
         });
@@ -161,46 +181,15 @@ public class MainWindowController
                 Player p = game.getPlayers().get(2);
                 if (p instanceof PlayerReal)
                 {
-                    ((PlayerReal) p).setOwnCardChosen(true);
                     ((PlayerReal) p).setOwnCardIndex(1);
+                    ((PlayerReal) p).setOwnCardChosen(true);
+
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("1");
+
+                    new PickWindow();
                 }
             }
         });
-    }
-
-    private void enableCurrentPlayerButtons()
-    {
-        switch (game.getPlayers().indexOf(game.getCurrentPlayer()))
-        {
-            case 0:
-                card00.setEnabled(true);
-                card01.setEnabled(true);
-
-                card10.setEnabled(false);
-                card11.setEnabled(false);
-                card20.setEnabled(false);
-                card21.setEnabled(false);
-                break;
-
-            case 1:
-                card10.setEnabled(true);
-                card11.setEnabled(true);
-
-                card00.setEnabled(false);
-                card01.setEnabled(false);
-                card20.setEnabled(false);
-                card21.setEnabled(false);
-                break;
-
-            case 2:
-                card20.setEnabled(true);
-                card21.setEnabled(true);
-
-                card00.setEnabled(false);
-                card01.setEnabled(false);
-                card10.setEnabled(false);
-                card11.setEnabled(false);
-                break;
-        }
     }
 }

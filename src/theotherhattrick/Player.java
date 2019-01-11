@@ -70,21 +70,7 @@ public abstract class Player extends Observable {
     public abstract boolean doTrick(Trick t);
 
     public abstract Card discardCard();
-    //    {
-//        System.out.println("Choisissez une carte à remettre au milieu");
-//        showHand(true);
-//        Scanner sc = new Scanner(System.in);
-//        String choice;
-//
-//        do
-//        {
-//            choice = sc.nextLine();
-//            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"))
-//                System.out.println("Choisissez une carte à remettre au milieu");
-//        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2"));
-//        
-//        return hand.remove(Integer.parseInt(choice));
-//    }
+
     public abstract void turnOverCard();
 
     public void turnOverCardNoChoice()
@@ -111,9 +97,9 @@ public abstract class Player extends Observable {
         for (Card c : hand)
             c.setVisible(false);
 
-        Prop newSevethProp = (Prop)discardCard();
+        Prop newSeventhProp = (Prop)discardCard();
 
-        Game.getInstance().setSeventhProp(newSevethProp);
+        Game.getInstance().setSeventhProp(newSeventhProp);
         cardDiscarded = true;
         setChanged();
         notifyObservers();
@@ -144,6 +130,14 @@ public abstract class Player extends Observable {
     }
 
     public void setPenalty() { score -= 3; }
+
+    public void resetFlags()
+    {
+        performTrick = false;
+        performTrickChosen = false;
+        trickAlreadyPerformed = false;
+        cardDiscarded = false;
+    }
 
     @Override
     public boolean equals(Object o)

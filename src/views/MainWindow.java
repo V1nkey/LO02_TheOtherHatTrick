@@ -32,6 +32,8 @@ public class MainWindow extends JFrame implements Observer, Runnable{
     private JOptionPane dialog;
 
     private Game game;
+    private MainWindowController mwc;
+    private ThreadScanner tScanner;
 
     private int ownCardIndex;
 
@@ -48,6 +50,7 @@ public class MainWindow extends JFrame implements Observer, Runnable{
         dialog = new JOptionPane();
 
         game = Game.getInstance();
+        tScanner = ThreadScanner.getInstance();
 
         game.addObserver(this);
         game.getSeventhProp().addObserver(this);
@@ -65,93 +68,10 @@ public class MainWindow extends JFrame implements Observer, Runnable{
         for (Card c : game.getTrickPile())
             c.addObserver(this);
 
-        MainWindowController mwc = new MainWindowController(this);
+        mwc = new MainWindowController(this);
 
         Thread t = new Thread(this);
         t.start();
-
-//        trickBt.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                game.drawTrick();
-//                trickBt.setEnabled(false);
-//                refreshView();
-//            }
-//        });
-
-        doTrickBt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                enableButtons();
-                if (game.getCurrentPlayer() == game.getPlayers().get(0)) {
-                    card10.setEnabled(false);
-                    card11.setEnabled(false);
-                    card20.setEnabled(false);
-                    card21.setEnabled(false);
-
-                } else if (game.getCurrentPlayer() == game.getPlayers().get(1)) {
-                    card00.setEnabled(false);
-                    card01.setEnabled(false);
-                    card20.setEnabled(false);
-                    card21.setEnabled(false);
-
-                } else if (game.getCurrentPlayer() == game.getPlayers().get(2)) {
-                    card00.setEnabled(false);
-                    card01.setEnabled(false);
-                    card10.setEnabled(false);
-                    card11.setEnabled(false);
-                }
-            }
-        });
-
-        card00.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //int ownCardIndex = 0;
-                ownCardIndex = 0;
-                chooseCard();
-            }
-        });
-        card01.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //int ownCardIndex = 1;
-                ownCardIndex = 1;
-                chooseCard();
-            }
-        });
-        card10.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //int ownCardIndex = 0;
-                ownCardIndex = 0;
-                chooseCard();
-            }
-        });
-        card11.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // int ownCardIndex = 1;
-                ownCardIndex = 1;
-                chooseCard();
-            }
-        });
-        card20.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //int ownCardIndex = 0;
-                ownCardIndex = 0;
-                chooseCard();
-            }
-        });
-        card21.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //int ownCardIndex = 1;
-                ownCardIndex = 1;
-                chooseCard();
-            }
-        });
     }
 
     private void refreshView() {
@@ -190,19 +110,6 @@ public class MainWindow extends JFrame implements Observer, Runnable{
         pickWindow.showCards();
     }
 
-    public void exchange(Player player, int index) {
-        game.getCurrentPlayer().exchangeCard(ownCardIndex, player, index);
-        refreshView();
-
-        boolean trickReussi = true;
-        if (trickReussi) {
-            DiscardWindow discardWindow = new DiscardWindow(this);
-
-            game.getCurrentPlayer().getHand().add(game.getSeventhProp());
-            discardWindow.showCards(game.getCurrentPlayer());
-        }
-    }
-
     public void putSeventhProp(int indexProp) {
         game.setSeventhProp(game.getCurrentPlayer().getHand().get(indexProp));
         game.getCurrentPlayer().getHand().remove(indexProp);
@@ -216,15 +123,16 @@ public class MainWindow extends JFrame implements Observer, Runnable{
     @Override
     public void run()
     {
-        int k = 0;
-        do
-        {
-            refreshView();
-            Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());
-
-            game.playTurn(currentPlayer);
-            k++;
-        } while (!game.isEnded());
+        while(isVisible());
+//        int k = 0;
+//        do
+//        {
+//            refreshView();
+//            Player currentPlayer = game.getPlayers().get(k%game.getPlayers().size());
+//
+//            game.playTurn(currentPlayer);
+//            k++;
+//        } while (!game.isEnded());
     }
 
     @Override
@@ -237,6 +145,7 @@ public class MainWindow extends JFrame implements Observer, Runnable{
 //                refreshView();
                 dialog.showMessageDialog(this, game.getCurrentPlayer() + " à toi de jouer","A toi !", JOptionPane.INFORMATION_MESSAGE);
                 trickBt.setEnabled(true);
+                doTrickBt.setEnabled(true);
             }
 
             if (game.isNewTrickPicked())
@@ -244,6 +153,9 @@ public class MainWindow extends JFrame implements Observer, Runnable{
                 trickBt.setText(game.getCurrentTrick().toString());
                 trickBt.setEnabled(false);
             }
+
+            if (game.isExchangeDone())
+                refreshView();
         }
 
         if (o instanceof Player)
@@ -286,12 +198,39 @@ public class MainWindow extends JFrame implements Observer, Runnable{
                 dialog.setEnabled(false);
 
             if (((PlayerReal) o).isExchangingCard())
+            {
+                if (!((PlayerReal) o).isOwnCardChosen())
+                {
+                    doTrickBt.setEnabled(false);
+                    enableCurrentPlayerButtons();
+                }
+                else if (!((PlayerReal) o).isOtherCardChosen())
+                    new PickWindow();
+            }
 
             if (((PlayerReal) o).isPerformingTrick())
+            {
+                int choice = JOptionPane.showConfirmDialog(this, "Réaliser ce trick ?","Veuillez confirmer votre choix",JOptionPane.YES_NO_OPTION);
+
+                if (choice == 0)
+                {
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("O");
+                }
+                else
+                {
+                    tScanner.setWaitingResponse(false);
+                    tScanner.setResult("N");
+                }
+            }
 
             if (((PlayerReal) o).isNeedToTurn())
 
-            if (((PlayerReal) o).isDiscardingCard());
+            if (((PlayerReal) o).isDiscardingCard())
+            {
+                JOptionPane.showMessageDialog(this, "TA-DAH !","Bien joué !", JOptionPane.INFORMATION_MESSAGE);
+                new DiscardWindow();
+            }
         }
 
         if (o instanceof Trick)
@@ -309,6 +248,51 @@ public class MainWindow extends JFrame implements Observer, Runnable{
     public JButton getCard21() { return card21; }
     public JButton getTrickBt() { return trickBt; }
     public JButton getDoTrickBt() { return doTrickBt; }
+
+    public void enableCurrentPlayerButtons()
+    {
+        switch (game.getPlayers().indexOf(game.getCurrentPlayer()))
+        {
+            case 0:
+                card00.setEnabled(true);
+                card01.setEnabled(true);
+
+                doTrickBt.setEnabled(false);
+                trickBt.setEnabled(false);
+
+                card10.setEnabled(false);
+                card11.setEnabled(false);
+                card20.setEnabled(false);
+                card21.setEnabled(false);
+                break;
+
+            case 1:
+                card10.setEnabled(true);
+                card11.setEnabled(true);
+
+                doTrickBt.setEnabled(false);
+                trickBt.setEnabled(false);
+
+                card00.setEnabled(false);
+                card01.setEnabled(false);
+                card20.setEnabled(false);
+                card21.setEnabled(false);
+                break;
+
+            case 2:
+                card20.setEnabled(true);
+                card21.setEnabled(true);
+
+                doTrickBt.setEnabled(false);
+                trickBt.setEnabled(false);
+
+                card00.setEnabled(false);
+                card01.setEnabled(false);
+                card10.setEnabled(false);
+                card11.setEnabled(false);
+                break;
+        }
+    }
 
     {
 // GUI initializer generated by IntelliJ IDEA GUI Designer
